@@ -8,6 +8,8 @@
 
 use yii\widgets\LinkPager;
 
+$this->title = 'Проекты';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
     Проекты
