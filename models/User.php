@@ -21,7 +21,7 @@ use Yii;
  * @property Project[] $projects
  * @property WorkOnProject[] $workOnProjects
  */
-class user extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

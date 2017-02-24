@@ -8,34 +8,16 @@
 
 use yii\widgets\LinkPager;
 
-$this->title = 'Проекты';
+$this->title = 'Проект';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
-    Проекты
     <?=
-    $name
+    $project->project_name
     ?>
 </h1>
-<ul>
-    <?
-    foreach ($list as $project){
-        ?>
-        <li>
-            <h3>
-                <?=
-                Yii::$app->urlManager->createUrl(['site/project', $project->project_name]).' '.
-                $project->project_name;
-                ?>
-            </h3>
-            <div>
-                <?=
-                $project->project_definition;
-                ?>
-            </div>
-        </li>
-        <?
-    }
+<p>
+    <?=
+    $project->project_definition
     ?>
-</ul>
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
+</p>

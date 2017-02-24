@@ -11,7 +11,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 
-class ProjectAdd extends Model{
+class ProjectAdd extends Project{
     public $name;
     public $definition;
     public $file;

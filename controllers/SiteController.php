@@ -84,12 +84,6 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            /*
-             * Поиск пользователя в бд
-             */
-/*            if(){
-
-            }*/
 
             return $this->goBack();
         }
@@ -138,7 +132,7 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-
+/*
     public function actionProjectadd(){
         $model = new ProjectAdd();
         $name = '';
@@ -156,10 +150,32 @@ class SiteController extends Controller
             'model' => $model,
             'name' => Yii::$app->session->get('name')
         ]);
-    }
+    }*/
 
     public function actionProject(){
+        $model = new Project();
         $name = Yii::$app->request->get('name');
+        $project = Project::findOne(['project_name' => $name]);
+
+//        $pagination = new Pagination([
+//            'defaultPageSize' => 2,
+//            'totalCount' => $list->count()
+//        ]);
+//
+//        $list = $list->offset($pagination->offset)
+//            ->limit($pagination->limit)
+//            ->all();
+
+        //Yii::$app->session->set('name', $name);
+        //$session = Yii::$app->session();
+        //$session->set('name', $name);
+
+        return $this->render('project', [
+            'project' => $project
+        ]);
+    }
+
+    public function actionProjects(){
         $model = new Project();
         $list = Project::find();
 
@@ -172,12 +188,7 @@ class SiteController extends Controller
             ->limit($pagination->limit)
             ->all();
 
-        Yii::$app->session->set('name', $name);
-        //$session = Yii::$app->session();
-        //$session->set('name', $name);
-
-        return $this->render('project', [
-            'name' => $name,
+        return $this->render('projects', [
             'list' => $list,
             'pagination' => $pagination
         ]);
