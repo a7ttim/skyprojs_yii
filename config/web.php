@@ -42,6 +42,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => true,
             'rules' => [
                 '' => 'site/index',
                 '<action>'=>'site/<action>'

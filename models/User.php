@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "member".
+ * This is the model class for table "user".
  *
  * @property integer $member_id
  * @property string $member_name
@@ -13,10 +13,10 @@ use Yii;
  * @property string $member_patronymic
  * @property integer $member_status
  * @property string $member_description
- * @property string $e-mail
+ * @property string $email
  * @property string $password
+ * @property string $user_token
  * @property string $auth_key
- * @property string $access_token
  *
  * @property Project[] $projects
  * @property WorkOnProject[] $workOnProjects
@@ -28,7 +28,7 @@ class User extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'member';
+        return 'user';
     }
 
     /**
@@ -37,10 +37,9 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['member_id', 'e-mail', 'password'], 'required'],
+            [['member_id', 'member_name', 'member_surname', 'member_description', 'email', 'password'], 'required'],
             [['member_id', 'member_status'], 'integer'],
-            [['member_name', 'member_surname', 'member_patronymic', 'member_description', 'e-mail', 'password'], 'string'],
-            [['auth_key', 'access_token'], 'string', 'max' => 255],
+            [['member_name', 'member_surname', 'member_patronymic', 'member_description', 'email', 'password', 'user_token', 'auth_key'], 'string'],
             [['member_id'], 'unique'],
         ];
     }
@@ -57,10 +56,10 @@ class User extends \yii\db\ActiveRecord
             'member_patronymic' => 'Member Patronymic',
             'member_status' => 'Member Status',
             'member_description' => 'Member Description',
-            'e-mail' => 'E Mail',
+            'email' => 'Email',
             'password' => 'Password',
+            'user_token' => 'User Token',
             'auth_key' => 'Auth Key',
-            'access_token' => 'Access Token',
         ];
     }
 

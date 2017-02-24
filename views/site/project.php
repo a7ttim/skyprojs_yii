@@ -21,3 +21,35 @@ $this->params['breadcrumbs'][] = $this->title;
     $project->project_definition
     ?>
 </p>
+<h3>
+    УДК
+</h3>
+<ul>
+    <?
+    foreach ($udks as $udk){
+        ?>
+        <li>
+            <?=
+            $udk->udk_name
+            ?>
+        </li>
+        <?
+    }
+    ?>
+</ul>
+<h3>
+    Участники
+</h3>
+<ul>
+    <?
+    foreach ($users as $user){
+        ?>
+        <li>
+            <?=
+            $user->member_name
+            ?>
+        </li>
+        <?
+    }
+    ?>
+</ul>

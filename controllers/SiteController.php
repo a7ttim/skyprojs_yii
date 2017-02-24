@@ -3,9 +3,13 @@
 namespace app\controllers;
 
 //use GuzzleHttp\Psr7\UploadedFile;
+use app\models\UserIdentity;
+use app\models\WorkOnProject;
+use MongoDB\Driver\Query;
 use Yii;
 use yii\bootstrap\Html;
 use yii\filters\AccessControl;
+use yii\rbac\Item;
 use yii\web\Controller;
 use yii\web\Session;
 use yii\web\UploadedFile;
@@ -14,6 +18,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\ProjectAdd;
 use app\models\Project;
+use app\models\User;
 use yii\data\Pagination;
 //use yii\web\Session;
 
@@ -153,25 +158,14 @@ class SiteController extends Controller
     }*/
 
     public function actionProject(){
-        $model = new Project();
         $name = Yii::$app->request->get('name');
         $project = Project::findOne(['project_name' => $name]);
-
-//        $pagination = new Pagination([
-//            'defaultPageSize' => 2,
-//            'totalCount' => $list->count()
-//        ]);
-//
-//        $list = $list->offset($pagination->offset)
-//            ->limit($pagination->limit)
-//            ->all();
-
-        //Yii::$app->session->set('name', $name);
-        //$session = Yii::$app->session();
-        //$session->set('name', $name);
-
+        $users = $project->workOnProjects;
+        $users = User::findAll(['member_id' => $users]);
         return $this->render('project', [
-            'project' => $project
+            'project' => $project,
+            'udks' => $project->udks,
+            'users' => $users,
         ]);
     }
 
