@@ -3,6 +3,9 @@
 namespace app\controllers;
 
 //use GuzzleHttp\Psr7\UploadedFile;
+use app\models\Department;
+use app\models\Udk;
+use app\models\Grnti;
 use app\models\UserIdentity;
 use app\models\WorkOnProject;
 use MongoDB\Driver\Query;
@@ -170,21 +173,60 @@ class SiteController extends Controller
     }
 
     public function actionProjects(){
-        $model = new Project();
-        $list = Project::find();
+        $code = Yii::$app->request->get('dep_code') or '';
+        $departments = Department::findAll(['department_parent_id' => $code]);
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 2,
-            'totalCount' => $list->count()
+        if($departments == null){
+            $department = Department::findOne(['department_id' => $code]);
+            $projects = $department->getProjects();
+            $pagination = new Pagination([
+                'defaultPageSize' => 20,
+                'totalCount' => $projects->count()
+            ]);
+
+            $projects = $projects->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+
+            return $this->render('projects', [
+                'title' => 'Проекты '.$department->department_name,
+                'projects' => $projects,
+                'pagination' => $pagination
+            ]);
+        }
+
+        return $this->render('departments', [
+            'title' => Department::findOne(['department_id' => $code])->department_name,
+            'departments' => $departments,
+//            'pagination' => $pagination
         ]);
+    }
 
-        $list = $list->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
+    public function actionUdks(){
+        $code = Yii::$app->request->get('udk_code') or '';
+        $udks = Udk::findAll(['udk_parent_id' => $code]);
+        if($udks == null){
+            $udk = Udk::findOne(['udk_id' => $code]);
+            $projects = $udk->getProjects();
+            $pagination = new Pagination([
+                'defaultPageSize' => 20,
+                'totalCount' => $projects->count()
+            ]);
 
-        return $this->render('projects', [
-            'list' => $list,
-            'pagination' => $pagination
+            $projects = $projects->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+
+            return $this->render('projects', [
+                'title' => 'Удк '.$udk->udk_code,
+                'projects' => $projects,
+                'pagination' => $pagination
+            ]);
+        }
+
+        return $this->render('udks', [
+            'title' => 'Удк '.Udk::findOne(['udk_id' => $code])->udk_code,
+            'udks' => $udks
         ]);
     }
 }

@@ -19,28 +19,23 @@ $this->params['breadcrumbs'][] = $this->title;
 </h1>
 <ul>
     <?
-    foreach ($projects as $project){
+    foreach ($departments as $department){
         ?>
         <li>
             <h3>
                 <a href="
                 <?=
-                Yii::$app->urlManager->createUrl(['site/project', 'name' => $project->project_name])
+                Yii::$app->urlManager->createUrl(['site/projects', 'dep_code' => $department->department_id])
                 ?>
                 ">
                     <?=
-                    $project->project_name;
+                    $department->department_name;
                     ?>
                 </a>
             </h3>
-            <div>
-                <?=
-                $project->project_definition;
-                ?>
-            </div>
         </li>
         <?
     }
     ?>
 </ul>
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
+<?//= LinkPager::widget(['pagination' => $pagination]) ?>

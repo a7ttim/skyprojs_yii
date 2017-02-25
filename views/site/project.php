@@ -8,8 +8,8 @@
 
 use yii\widgets\LinkPager;
 
-$this->title = 'Проект';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $project->project_name;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
     <?=
@@ -29,9 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
     foreach ($udks as $udk){
         ?>
         <li>
+            <a href="
             <?=
-            $udk->udk_name
+            Yii::$app->urlManager->createUrl(['site/udks', 'udk_code' => $udk->udk_id])
             ?>
+            ">
+                <?=
+                $udk->udk_name
+                ?>
+            </a>
         </li>
         <?
     }
