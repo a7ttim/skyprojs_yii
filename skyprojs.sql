@@ -11,7 +11,7 @@ Target Server Type    : PGSQL
 Target Server Version : 90503
 File Encoding         : 65001
 
-Date: 2017-02-25 00:39:41
+Date: 2017-02-26 00:22:47
 */
 
 
@@ -21,7 +21,8 @@ Date: 2017-02-25 00:39:41
 DROP TABLE IF EXISTS "public"."department";
 CREATE TABLE "public"."department" (
 "department_id" int4 NOT NULL,
-"department_name" text COLLATE "default" NOT NULL
+"department_name" text COLLATE "default" NOT NULL,
+"department_parent_id" int4
 )
 WITH (OIDS=FALSE)
 
@@ -30,7 +31,9 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of department
 -- ----------------------------
-INSERT INTO "public"."department" VALUES ('1', 'AA');
+INSERT INTO "public"."department" VALUES ('1', 'ТУСУР', null);
+INSERT INTO "public"."department" VALUES ('2', 'ФСУ', '1');
+INSERT INTO "public"."department" VALUES ('3', 'АОИ', '2');
 
 -- ----------------------------
 -- Table structure for department_contains
@@ -47,6 +50,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of department_contains
 -- ----------------------------
+INSERT INTO "public"."department_contains" VALUES ('3', '1');
 
 -- ----------------------------
 -- Table structure for grnti
@@ -120,6 +124,8 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of udk
 -- ----------------------------
+INSERT INTO "public"."udk" VALUES ('1', null, '223', 'Инф');
+INSERT INTO "public"."udk" VALUES ('2', '1', '312', 'Dss');
 
 -- ----------------------------
 -- Table structure for udk_classificate
@@ -136,6 +142,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of udk_classificate
 -- ----------------------------
+INSERT INTO "public"."udk_classificate" VALUES ('2', '1');
 
 -- ----------------------------
 -- Table structure for user
