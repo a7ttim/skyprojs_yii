@@ -40,6 +40,7 @@ $title_name = 'ОПВРИП';
             ['label' => 'Главная', 'url' => ['/site/index']],
 //            ['label' => 'О нас', 'url' => ['/site/about']],
 //            ['label' => 'Контакты', 'url' => ['/site/contact']],
+        //
             ['label' => 'Проекты', 'url' => ['/site/projects']],
             ['label' => 'УДК', 'url' => ['/site/udks']],
             Yii::$app->user->isGuest ? (
