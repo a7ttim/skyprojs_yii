@@ -37,10 +37,12 @@ $title_name = 'ОПВРИП';
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            !Yii::$app->user->isGuest && Yii::$app->user->identity->member_status == '2' ? (
+                    ['label' => 'Админ', 'url' => ['/site/admin']]
+                ) : (
+                        ''
+            ),
             ['label' => 'Главная', 'url' => ['/site/index']],
-//            ['label' => 'О нас', 'url' => ['/site/about']],
-//            ['label' => 'Контакты', 'url' => ['/site/contact']],
-        //
             ['label' => 'Проекты', 'url' => ['/site/projects']],
             ['label' => 'УДК', 'url' => ['/site/udks']],
             Yii::$app->user->isGuest ? (
