@@ -18,7 +18,7 @@ $this->title = $project->project_name;
 </h1>
 <p>
     <?=
-    $project->project_definition
+    $project->project_specifications
     ?>
 </p>
 <h3>

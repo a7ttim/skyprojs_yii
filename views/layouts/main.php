@@ -37,12 +37,11 @@ $title_name = 'ОПВРИП';
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            !Yii::$app->user->isGuest && Yii::$app->user->identity->member_status == '2' ? (
+            !Yii::$app->user->isGuest ? (
                     ['label' => 'Админ', 'url' => ['/site/admin']]
                 ) : (
                         ''
             ),
-            ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'Проекты', 'url' => ['/site/projects']],
             ['label' => 'УДК', 'url' => ['/site/udks']],
             Yii::$app->user->isGuest ? (
@@ -51,7 +50,7 @@ $title_name = 'ОПВРИП';
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Выход (' . Yii::$app->user->identity->email . ')',
+                    'Выход (' . Yii::$app->user->identity->admin_login . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()

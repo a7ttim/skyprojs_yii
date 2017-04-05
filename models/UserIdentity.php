@@ -2,14 +2,14 @@
 
 namespace app\models;
 
-class UserIdentity extends User implements \yii\web\IdentityInterface
+class UserIdentity extends Admin implements \yii\web\IdentityInterface
 {
     /**
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['member_id' => $id]);
+        return static::findOne(['admin_login' => $id]);
     }
 
     /**
@@ -28,7 +28,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['email' => $username]);
+        return static::findOne(['admin_login' => $username]);
     }
 
     /**
@@ -36,7 +36,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      */
     public function getId()
     {
-        return $this->member_id;
+        return $this->admin_login;
     }
 
     /**
@@ -44,7 +44,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->auth_key;
+        return $this->admin_access_key;
     }
 
     /**
@@ -52,7 +52,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->auth_key === $authKey;
+        return $this->admin_access_key === $authKey;
     }
 
     /**
@@ -63,6 +63,6 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === md5($password);
+        return $this->admin_password === md5($password);
     }
 }

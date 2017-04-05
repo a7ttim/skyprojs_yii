@@ -8,20 +8,24 @@ use Yii;
  * This is the model class for table "project".
  *
  * @property integer $project_id
- * @property integer $member_id
  * @property string $project_name
- * @property integer $project_status
- * @property string $project_definition
- * @property string $Дата подачи
+ * @property string $project_date
+ * @property string $project_area
+ * @property string $project_advantages
+ * @property string $project_specifications
+ * @property string $project_consumers
+ * @property string $project_protection
  *
- * @property DepartmentContains[] $departmentContains
- * @property Department[] $departments
- * @property GrntiClassificate[] $grntiClassificates
+ * @property Classificate1[] $classificate1s
  * @property Grnti[] $grntis
- * @property User $member
- * @property UdkClassificate[] $udkClassificates
+ * @property Classificate2[] $classificate2s
  * @property Udk[] $udks
- * @property WorkOnProject[] $workOnProjects
+ * @property Classificate3[] $classificate3s
+ * @property Directions[] $directions
+ * @property Collaborator[] $collaborators
+ * @property Member[] $members
+ * @property Working[] $workings
+ * @property Department[] $departments
  */
 class Project extends \yii\db\ActiveRecord
 {
@@ -39,12 +43,11 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['project_id', 'project_name', 'project_definition', 'Дата подачи'], 'required'],
-            [['project_id', 'member_id', 'project_status'], 'integer'],
-            [['project_name', 'project_definition'], 'string'],
-            [['Дата подачи'], 'safe'],
+            [['project_id', 'project_name', 'project_date', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'required'],
+            [['project_id'], 'integer'],
+            [['project_date'], 'safe'],
+            [['project_name', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'string', 'max' => 254],
             [['project_id'], 'unique'],
-            [['member_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['member_id' => 'member_id']],
         ];
     }
 
@@ -55,36 +58,22 @@ class Project extends \yii\db\ActiveRecord
     {
         return [
             'project_id' => 'Project ID',
-            'member_id' => 'Member ID',
             'project_name' => 'Project Name',
-            'project_status' => 'Project Status',
-            'project_definition' => 'Project Definition',
-            'Дата подачи' => 'Дата подачи',
+            'project_date' => 'Project Date',
+            'project_area' => 'Project Area',
+            'project_advantages' => 'Project Advantages',
+            'project_specifications' => 'Project Specifications',
+            'project_consumers' => 'Project Consumers',
+            'project_protection' => 'Project Protection',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDepartmentContains()
+    public function getClassificate1s()
     {
-        return $this->hasMany(DepartmentContains::className(), ['project_id' => 'project_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDepartments()
-    {
-        return $this->hasMany(Department::className(), ['department_id' => 'department_id'])->viaTable('department_contains', ['project_id' => 'project_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGrntiClassificates()
-    {
-        return $this->hasMany(GrntiClassificate::className(), ['project_id' => 'project_id']);
+        return $this->hasMany(Classificate1::className(), ['project_id' => 'project_id']);
     }
 
     /**
@@ -92,23 +81,15 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getGrntis()
     {
-        return $this->hasMany(Grnti::className(), ['grnti_id' => 'grnti_id'])->viaTable('grnti_classificate', ['project_id' => 'project_id']);
+        return $this->hasMany(Grnti::className(), ['grnti_id' => 'grnti_id'])->viaTable('classificate_1', ['project_id' => 'project_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMember()
+    public function getClassificate2s()
     {
-        return $this->hasOne(User::className(), ['member_id' => 'member_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUdkClassificates()
-    {
-        return $this->hasMany(UdkClassificate::className(), ['project_id' => 'project_id']);
+        return $this->hasMany(Classificate2::className(), ['project_id' => 'project_id']);
     }
 
     /**
@@ -116,22 +97,54 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getUdks()
     {
-        return $this->hasMany(Udk::className(), ['udk_id' => 'udk_id'])->viaTable('udk_classificate', ['project_id' => 'project_id']);
+        return $this->hasMany(Udk::className(), ['udk_id' => 'udk_id'])->viaTable('classificate_2', ['project_id' => 'project_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getWorkOnProjects()
+    public function getClassificate3s()
     {
-        return $this->hasMany(WorkOnProject::className(), ['project_id' => 'project_id']);
+        return $this->hasMany(Classificate3::className(), ['project_id' => 'project_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUsers(){
-        return $this->hasMany(User::className(), ['member_id' => 'member_id'])
-            ->via('workOnProjects');
+    public function getDirections()
+    {
+        return $this->hasMany(Directions::className(), ['direction_id' => 'direction_id'])->viaTable('classificate_3', ['project_id' => 'project_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCollaborators()
+    {
+        return $this->hasMany(Collaborator::className(), ['project_id' => 'project_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMembers()
+    {
+        return $this->hasMany(Member::className(), ['member_id' => 'member_id'])->viaTable('collaborator', ['project_id' => 'project_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getWorkings()
+    {
+        return $this->hasMany(Working::className(), ['project_id' => 'project_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDepartments()
+    {
+        return $this->hasMany(Department::className(), ['department_id' => 'department_id'])->viaTable('working', ['project_id' => 'project_id']);
     }
 }

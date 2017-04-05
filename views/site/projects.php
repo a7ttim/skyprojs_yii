@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </h3>
             <div>
                 <?=
-                $project->project_definition;
+                $project->project_specifications;
                 ?>
             </div>
         </li>

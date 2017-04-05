@@ -4,6 +4,7 @@ namespace app\controllers;
 
 //use GuzzleHttp\Psr7\UploadedFile;
 use app\models\Department;
+use app\models\Member;
 use app\models\Udk;
 use app\models\Grnti;
 use app\models\UserIdentity;
@@ -76,7 +77,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('index');
+        }
+        return $this->actionLogin();
     }
 
     /**
@@ -163,8 +167,8 @@ class SiteController extends Controller
     public function actionProject(){
         $name = Yii::$app->request->get('name');
         $project = Project::findOne(['project_name' => $name]);
-        $users = $project->workOnProjects;
-        $users = User::findAll(['member_id' => $users]);
+        $users = $project->members;
+        $users = Member::findAll(['member_id' => $users]);
         return $this->render('project', [
             'project' => $project,
             'udks' => $project->udks,

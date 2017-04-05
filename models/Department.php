@@ -11,9 +11,8 @@ use Yii;
  * @property string $department_name
  * @property integer $department_parent_id
  *
- * @property DepartmentContains[] $departmentContains
+ * @property Working[] $workings
  * @property Project[] $projects
- * @property WorkOnProject[] $workOnProjects
  */
 class Department extends \yii\db\ActiveRecord
 {
@@ -33,7 +32,7 @@ class Department extends \yii\db\ActiveRecord
         return [
             [['department_id', 'department_name'], 'required'],
             [['department_id', 'department_parent_id'], 'integer'],
-            [['department_name'], 'string'],
+            [['department_name'], 'string', 'max' => 254],
             [['department_id'], 'unique'],
         ];
     }
@@ -53,9 +52,9 @@ class Department extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDepartmentContains()
+    public function getWorkings()
     {
-        return $this->hasMany(DepartmentContains::className(), ['department_id' => 'department_id']);
+        return $this->hasMany(Working::className(), ['department_id' => 'department_id']);
     }
 
     /**
@@ -63,14 +62,6 @@ class Department extends \yii\db\ActiveRecord
      */
     public function getProjects()
     {
-        return $this->hasMany(Project::className(), ['project_id' => 'project_id'])->viaTable('department_contains', ['department_id' => 'department_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getWorkOnProjects()
-    {
-        return $this->hasMany(WorkOnProject::className(), ['department_id' => 'department_id']);
+        return $this->hasMany(Project::className(), ['project_id' => 'project_id'])->viaTable('working', ['department_id' => 'department_id']);
     }
 }
