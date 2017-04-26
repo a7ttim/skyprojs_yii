@@ -38,7 +38,7 @@ $title_name = 'ОПВРИП';
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             !Yii::$app->user->isGuest ? (
-                    ['label' => 'Админ', 'url' => ['/site/admin']]
+                    ['label' => 'Админ', 'url' => ['/admin']]
                 ) : (
                         ''
             ),

@@ -1,12 +1,12 @@
 <div class="admin-default-index">
-    <h1>Панель управления</h1>
-    <ul>
-        <li>
-            <a href="
-                <?= Yii::$app->urlManager->createUrl(['admin/project']) ?>
-                ">
-                Проекты
-            </a>
-        </li>
-    </ul>
+    <h1><?= $this->context->action->uniqueId ?></h1>
+    <p>
+        This is the view content for action "<?= $this->context->action->id ?>".
+        The action belongs to the controller "<?= get_class($this->context) ?>"
+        in the "<?= $this->context->module->id ?>" module.
+    </p>
+    <p>
+        You may customize this page by editing the following file:<br>
+        <code><?= __FILE__ ?></code>
+    </p>
 </div>

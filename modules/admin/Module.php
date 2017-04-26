@@ -10,9 +10,9 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $layout = 'admin';
-
     public $controllerNamespace = 'app\modules\admin\controllers';
+
+    public $layout = 'admin.php';
 
     /**
      * @inheritdoc

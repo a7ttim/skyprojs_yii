@@ -45,5 +45,6 @@ class DefaultController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->render('index');
         }
+        return $this->render('index');
     }
 }

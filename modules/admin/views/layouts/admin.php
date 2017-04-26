@@ -42,8 +42,8 @@ $title_name = 'ОПВРИП';
                 ) : (
                         ''
             ),
-            ['label' => 'Проекты', 'url' => ['/site/projects']],
-            ['label' => 'УДК', 'url' => ['/site/udks']],
+            ['label' => 'Проекты', 'url' => ['/admin/project']],
+            ['label' => 'УДК', 'url' => ['/admin/udks']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/auth/login']]
             ) : (
