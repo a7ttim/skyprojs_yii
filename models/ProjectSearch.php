@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\admin\models;
+namespace app\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\admin\models\Department;
+use app\models\project;
 
 /**
- * DepartmentSearch represents the model behind the search form about `app\modules\admin\models\Department`.
+ * ProjectSearch represents the model behind the search form of `app\models\project`.
  */
-class DepartmentSearch extends Department
+class ProjectSearch extends project
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class DepartmentSearch extends Department
     public function rules()
     {
         return [
-            [['department_id', 'department_parent_id'], 'integer'],
-            [['department_name'], 'safe'],
+            [['project_id'], 'integer'],
+            [['project_name', 'project_date', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class DepartmentSearch extends Department
      */
     public function search($params)
     {
-        $query = Department::find();
+        $query = project::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,16 @@ class DepartmentSearch extends Department
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'department_id' => $this->department_id,
-            'department_parent_id' => $this->department_parent_id,
+            'project_id' => $this->project_id,
+            'project_date' => $this->project_date,
         ]);
 
-        $query->andFilterWhere(['like', 'department_name', $this->department_name]);
+        $query->andFilterWhere(['ilike', 'project_name', $this->project_name])
+            ->andFilterWhere(['ilike', 'project_area', $this->project_area])
+            ->andFilterWhere(['ilike', 'project_advantages', $this->project_advantages])
+            ->andFilterWhere(['ilike', 'project_specifications', $this->project_specifications])
+            ->andFilterWhere(['ilike', 'project_consumers', $this->project_consumers])
+            ->andFilterWhere(['ilike', 'project_protection', $this->project_protection]);
 
         return $dataProvider;
     }

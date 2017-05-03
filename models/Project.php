@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "project".
  *
- * @property integer $project_id
+ * @property int $project_id
  * @property string $project_name
  * @property string $project_date
  * @property string $project_area
@@ -43,11 +43,9 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['project_id', 'project_name', 'project_date', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'required'],
-            [['project_id'], 'integer'],
+            [['project_name', 'project_date', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'required'],
             [['project_date'], 'safe'],
             [['project_name', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'string', 'max' => 254],
-            [['project_id'], 'unique'],
         ];
     }
 

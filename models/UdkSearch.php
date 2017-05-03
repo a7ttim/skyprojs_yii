@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\admin\models;
+namespace app\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\admin\models\project;
+use app\models\Udk;
 
 /**
- * ProjectSearch represents the model behind the search form about `app\modules\admin\models\project`.
+ * UdkSearch represents the model behind the search form of `app\models\Udk`.
  */
-class ProjectSearch extends project
+class UdkSearch extends Udk
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class ProjectSearch extends project
     public function rules()
     {
         return [
-            [['project_id'], 'integer'],
-            [['project_name', 'project_date', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'safe'],
+            [['udk_id', 'udk_parent_id'], 'integer'],
+            [['udk_code', 'udk_name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ProjectSearch extends project
      */
     public function search($params)
     {
-        $query = project::find();
+        $query = Udk::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,12 @@ class ProjectSearch extends project
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'project_id' => $this->project_id,
-            'project_date' => $this->project_date,
+            'udk_id' => $this->udk_id,
+            'udk_parent_id' => $this->udk_parent_id,
         ]);
 
-        $query->andFilterWhere(['like', 'project_name', $this->project_name])
-            ->andFilterWhere(['like', 'project_area', $this->project_area])
-            ->andFilterWhere(['like', 'project_advantages', $this->project_advantages])
-            ->andFilterWhere(['like', 'project_specifications', $this->project_specifications])
-            ->andFilterWhere(['like', 'project_consumers', $this->project_consumers])
-            ->andFilterWhere(['like', 'project_protection', $this->project_protection]);
+        $query->andFilterWhere(['ilike', 'udk_code', $this->udk_code])
+            ->andFilterWhere(['ilike', 'udk_name', $this->udk_name]);
 
         return $dataProvider;
     }

@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\admin\models\ProjectSearch */
+/* @var $model app\models\ProjectSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -16,11 +16,11 @@ use dosamigos\datepicker\DatePicker;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'project_id') ?>
+    <? /* $form->field($model, 'project_id') */ ?>
 
     <?= $form->field($model, 'project_name') ?>
 
-    <?= $form->field($model, 'project_date')->widget(
+    <? /* $form->field($model, 'project_date')->widget(
         DatePicker::className(), [
         // inline too, not bad
         'inline' => true,
@@ -30,11 +30,11 @@ use dosamigos\datepicker\DatePicker;
             'autoclose' => true,
             'format' => 'dd-M-yyyy'
         ]
-    ]); ?>
+    ]);  */?>
 
-    <?= $form->field($model, 'project_area') ?>
+    <? /* $form->field($model, 'project_area') */ ?>
 
-    <?= $form->field($model, 'project_advantages') ?>
+    <? /* $form->field($model, 'project_advantages') */ ?>
 
     <?php // echo $form->field($model, 'project_specifications') ?>
 

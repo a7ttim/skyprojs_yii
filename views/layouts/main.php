@@ -45,10 +45,10 @@ $title_name = 'ОПВРИП';
             ['label' => 'Проекты', 'url' => ['/site/projects']],
             ['label' => 'УДК', 'url' => ['/site/udks']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Вход', 'url' => ['/site/login']]
+                ['label' => 'Вход', 'url' => ['/auth/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/auth/logout'], 'post')
                 . Html::submitButton(
                     'Выход (' . Yii::$app->user->identity->admin_login . ')',
                     ['class' => 'btn btn-link logout']

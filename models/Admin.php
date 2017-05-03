@@ -30,7 +30,7 @@ class Admin extends \yii\db\ActiveRecord
         return [
             [['admin_login', 'admin_password'], 'required'],
             [['admin_login', 'admin_password', 'admin_token', 'admin_access_key'], 'string', 'max' => 254],
-            [['admin_password', 'admin_login'], 'unique', 'targetAttribute' => ['admin_password', 'admin_login'], 'message' => 'The combination of Admin Login and Admin Password has already been taken.'],
+            [['admin_password', 'admin_login'], 'unique', 'targetAttribute' => ['admin_password', 'admin_login']],
         ];
     }
 

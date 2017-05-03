@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\admin\models;
+namespace app\models;
 
 use Yii;
 
 /**
  * This is the model class for table "collaborator".
  *
- * @property integer $member_id
- * @property integer $project_id
+ * @property int $member_id
+ * @property int $project_id
  *
  * @property Member $member
  * @property Project $project
@@ -30,8 +30,9 @@ class Collaborator extends \yii\db\ActiveRecord
     {
         return [
             [['member_id', 'project_id'], 'required'],
+            [['member_id', 'project_id'], 'default', 'value' => null],
             [['member_id', 'project_id'], 'integer'],
-            [['member_id', 'project_id'], 'unique', 'targetAttribute' => ['member_id', 'project_id'], 'message' => 'The combination of Member ID and Project ID has already been taken.'],
+            [['member_id', 'project_id'], 'unique', 'targetAttribute' => ['member_id', 'project_id']],
             [['member_id'], 'exist', 'skipOnError' => true, 'targetClass' => Member::className(), 'targetAttribute' => ['member_id' => 'member_id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'project_id']],
         ];

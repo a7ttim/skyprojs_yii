@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "working".
  *
- * @property integer $department_id
- * @property integer $project_id
+ * @property int $department_id
+ * @property int $project_id
  *
  * @property Department $department
  * @property Project $project
@@ -30,8 +30,9 @@ class Working extends \yii\db\ActiveRecord
     {
         return [
             [['department_id', 'project_id'], 'required'],
+            [['department_id', 'project_id'], 'default', 'value' => null],
             [['department_id', 'project_id'], 'integer'],
-            [['department_id', 'project_id'], 'unique', 'targetAttribute' => ['department_id', 'project_id'], 'message' => 'The combination of Department ID and Project ID has already been taken.'],
+            [['department_id', 'project_id'], 'unique', 'targetAttribute' => ['department_id', 'project_id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'department_id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'project_id']],
         ];

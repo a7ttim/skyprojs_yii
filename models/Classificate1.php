@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\admin\models;
+namespace app\models;
 
 use Yii;
 
 /**
  * This is the model class for table "classificate_1".
  *
- * @property integer $project_id
- * @property integer $grnti_id
+ * @property int $project_id
+ * @property int $grnti_id
  *
  * @property Grnti $grnti
  * @property Project $project
@@ -30,8 +30,9 @@ class Classificate1 extends \yii\db\ActiveRecord
     {
         return [
             [['project_id', 'grnti_id'], 'required'],
+            [['project_id', 'grnti_id'], 'default', 'value' => null],
             [['project_id', 'grnti_id'], 'integer'],
-            [['project_id', 'grnti_id'], 'unique', 'targetAttribute' => ['project_id', 'grnti_id'], 'message' => 'The combination of Project ID and Grnti ID has already been taken.'],
+            [['project_id', 'grnti_id'], 'unique', 'targetAttribute' => ['project_id', 'grnti_id']],
             [['grnti_id'], 'exist', 'skipOnError' => true, 'targetClass' => Grnti::className(), 'targetAttribute' => ['grnti_id' => 'grnti_id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'project_id']],
         ];

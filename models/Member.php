@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "member".
  *
- * @property integer $member_id
+ * @property int $member_id
  * @property string $member_name
  * @property string $member_surname
  * @property string $member_patronymic
@@ -32,6 +32,7 @@ class Member extends \yii\db\ActiveRecord
     {
         return [
             [['member_id', 'member_name', 'member_surname', 'member_patronymic'], 'required'],
+            [['member_id'], 'default', 'value' => null],
             [['member_id'], 'integer'],
             [['member_name', 'member_surname', 'member_patronymic'], 'string', 'max' => 254],
             [['member_id'], 'unique'],

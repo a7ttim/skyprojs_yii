@@ -10,7 +10,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
-$title_name = 'ОПВРИП';
+$title_name = 'ОПВРИП | Панель управления';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -37,13 +37,8 @@ $title_name = 'ОПВРИП';
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            !Yii::$app->user->isGuest ? (
-                    ['label' => 'Админ', 'url' => ['/admin']]
-                ) : (
-                        ''
-            ),
             ['label' => 'Проекты', 'url' => ['/admin/project']],
-            ['label' => 'УДК', 'url' => ['/admin/udks']],
+            ['label' => 'УДК', 'url' => ['/admin/udk']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/auth/login']]
             ) : (
