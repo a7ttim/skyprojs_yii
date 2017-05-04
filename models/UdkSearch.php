@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Udk;
+use app\models\udk;
 
 /**
- * UdkSearch represents the model behind the search form of `app\models\Udk`.
+ * UdkSearch represents the model behind the search form about `app\models\udk`.
  */
-class UdkSearch extends Udk
+class UdkSearch extends udk
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class UdkSearch extends Udk
      */
     public function search($params)
     {
-        $query = Udk::find();
+        $query = udk::find();
 
         // add conditions that should always apply here
 
@@ -63,8 +63,8 @@ class UdkSearch extends Udk
             'udk_parent_id' => $this->udk_parent_id,
         ]);
 
-        $query->andFilterWhere(['ilike', 'udk_code', $this->udk_code])
-            ->andFilterWhere(['ilike', 'udk_name', $this->udk_name]);
+        $query->andFilterWhere(['like', 'udk_code', $this->udk_code])
+            ->andFilterWhere(['like', 'udk_name', $this->udk_name]);
 
         return $dataProvider;
     }
