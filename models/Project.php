@@ -55,14 +55,14 @@ class Project extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'project_id' => 'Project ID',
-            'project_name' => 'Project Name',
-            'project_date' => 'Project Date',
-            'project_area' => 'Project Area',
-            'project_advantages' => 'Project Advantages',
-            'project_specifications' => 'Project Specifications',
-            'project_consumers' => 'Project Consumers',
-            'project_protection' => 'Project Protection',
+            'project_id' => 'Проект',
+            'project_name' => 'Название',
+            'project_date' => 'Дата',
+            'project_area' => 'Область',
+            'project_advantages' => 'Преимущества',
+            'project_specifications' => 'Спецификации',
+            'project_consumers' => 'Потребители',
+            'project_protection' => 'Защита',
         ];
     }
 

@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use app\models\project;
 
 /**
- * ProjectSearch represents the model behind the search form of `app\models\project`.
+ * projectSearch represents the model behind the search form of `app\models\project`.
  */
-class ProjectSearch extends project
+class projectSearch extends project
 {
     /**
      * @inheritdoc

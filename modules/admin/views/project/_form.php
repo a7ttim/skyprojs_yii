@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\project */
@@ -16,20 +17,19 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'project_name')->textInput(['maxlength' => true]) ?>
 
-    <? /* $form->field($model, 'project_date')->widget(
-        DatePicker::className(), [
-        // inline too, not bad
-        'inline' => true,
-        // modify template for custom rendering
-        'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
-        'clientOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-    ]);  */
-    ?>
-
     <?= $form->field($model, 'project_date')->textInput(['readonly' => true, 'value' => date('Y-m-d')]) ?>
+
+    <? // Without model and implementing a multiple select
+    echo '<label class="control-label">Provinces</label>';
+    echo Select2::widget([
+        'name' => 'state_10',
+        'data' => \app\models\Udk::find()->all(),
+        'options' => [
+            'placeholder' => 'Select provinces ...',
+            'multiple' => true
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'project_area')->textarea(['maxlength' => true]) ?>
 
