@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use app\models\Udk;
+use \yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UdkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -31,7 +33,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'udk_name:ntext',
             'udk_parent_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
+            [
+                'value' => function (Udk $udk) {
+                    return Html::a('<span class="fa fa-search"></span>open', Url::to(['view', 'id' => $udk->udk_id]), [
+                        'title' => Yii::t('app', 'open'),
+                        'class' =>'btn btn-info btn-xs',
+                    ]);
+                },
+                'headerOptions' => ['style' => 'width:10px'],
+                'format' => 'raw',
+            ],
+            [
+                'value' => function (Udk $udk) {
+                    return Html::a('<span class="fa fa-search"></span>update', Url::to(['update', 'id' => $udk->udk_id]), [
+                        'title' => Yii::t('app', 'update'),
+                        'class' =>'btn btn-primary btn-xs',
+                    ]);
+                },
+                'headerOptions' => ['style' => 'width:10px'],
+                'format' => 'raw',
+            ],
+            [
+                'value' => function (Udk $udk) {
+                    return Html::a('<span class="fa fa-search"></span>delete', Url::to(['delete', 'id' => $udk->udk_id]), [
+                        'title' => Yii::t('app', 'delete'),
+                        'class' =>'btn btn-danger btn-xs',
+                    ]);
+                },
+                'headerOptions' => ['style' => 'width:10px'],
+                'format' => 'raw',
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

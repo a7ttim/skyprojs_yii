@@ -40,16 +40,9 @@ $title_name = 'ОПВРИП | Панель управления';
             ['label' => 'Проекты', 'url' => ['/admin/project']],
             ['label' => 'УДК', 'url' => ['/admin/udk']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Вход', 'url' => ['/auth/login']]
+            ['label' => 'Вход', 'url' => ['/auth/login']]
             ) : (
-                '<li>'
-                . Html::beginForm(['/auth/logout'], 'post')
-                . Html::submitButton(
-                    'Выход (' . Yii::$app->user->identity->admin_login . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+            ['label' => 'Выход ('.Yii::$app->user->identity->admin_login.')', 'url' => ['/auth/logout']]
             )
         ],
     ]);

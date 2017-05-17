@@ -24,12 +24,12 @@ use app\models\Udk;
         'attribute' => 'udks',
         'language' => 'ru',
         'data' => \yii\helpers\ArrayHelper::map(Udk::find()->all(), 'udk_id', 'udk_code'),
-        'options' => ['placeholder' => 'Select a UDK ...', 'multiple' => true],
+        'options' => ['placeholder' => 'Выбрать УДК ...', 'multiple' => true],
         'pluginOptions' => [
             'tokenSeparators' => [',', ' '],
             'maximumInputLength' => 10
         ],
-    ])->label('UDKs');
+    ])->label('УДК');
     ?>
 
     <?= $form->field($model, 'project_area')->textarea(['maxlength' => true]) ?>
