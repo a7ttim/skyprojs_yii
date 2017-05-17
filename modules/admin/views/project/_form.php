@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use kartik\select2\Select2;
+use app\models\Udk;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\project */
@@ -19,16 +20,16 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'project_date')->textInput(['readonly' => true, 'value' => date('Y-m-d')]) ?>
 
-    <? // Without model and implementing a multiple select
-    echo '<label class="control-label">Provinces</label>';
-    echo Select2::widget([
-        'name' => 'state_10',
-        'data' => \app\models\Udk::find()->all(),
-        'options' => [
-            'placeholder' => 'Select provinces ...',
-            'multiple' => true
+    <?= $form->field($model, 'udks_array')->widget(Select2::classname(), [
+        'attribute' => 'udks',
+        'language' => 'ru',
+        'data' => \yii\helpers\ArrayHelper::map(Udk::find()->all(), 'udk_id', 'udk_code'),
+        'options' => ['placeholder' => 'Select a UDK ...', 'multiple' => true],
+        'pluginOptions' => [
+            'tokenSeparators' => [',', ' '],
+            'maximumInputLength' => 10
         ],
-    ]);
+    ])->label('UDKs');
     ?>
 
     <?= $form->field($model, 'project_area')->textarea(['maxlength' => true]) ?>
