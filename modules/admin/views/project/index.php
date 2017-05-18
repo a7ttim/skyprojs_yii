@@ -10,7 +10,7 @@ use app\models\Project;
 /* @var $searchModel app\models\projectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Projects');
+$this->title = 'Проекты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-index">
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Project'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Создать проект'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'project_protection',
             [
                 'value' => function (Project $project) {
-                    return Html::a('<span class="fa fa-search"></span>open', Url::to(['view', 'id' => $project->project_id]), [
+                    return Html::a('<span class="fa fa-search"></span>открыть', Url::to(['view', 'id' => $project->project_id]), [
                         'title' => Yii::t('app', 'open'),
                         'class' => 'btn btn-info btn-xs',
                     ]);
@@ -54,19 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'value' => function (Project $project) {
-                    return Html::a('<span class="fa fa-search"></span>update', Url::to(['update', 'id' => $project->project_id]), [
+                    return Html::a('<span class="fa fa-search"></span>изменить', Url::to(['update', 'id' => $project->project_id]), [
                             'title' => Yii::t('app', 'update'),
                             'class' => 'btn btn-primary btn-xs',
-                        ]);
-                },
-                'headerOptions' => ['style' => 'width:10px'],
-                'format' => 'raw',
-            ],
-            [
-                'value' => function (Project $project) {
-                    return Html::a('<span class="fa fa-search"></span>delete', Url::to(['delete', 'id' => $project->project_id]), [
-                            'title' => Yii::t('app', 'delete'),
-                            'class' =>'btn btn-danger btn-xs',
                         ]);
                 },
                 'headerOptions' => ['style' => 'width:10px'],

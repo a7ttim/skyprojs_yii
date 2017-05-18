@@ -39,6 +39,9 @@ $title_name = 'ОПВРИП | Панель управления';
         'items' => [
             ['label' => 'Проекты', 'url' => ['/admin/project']],
             ['label' => 'УДК', 'url' => ['/admin/udk']],
+            ['label' => 'ГРНТИ', 'url' => ['/admin/grnti']],
+            ['label' => 'Подразделения', 'url' => ['/admin/department']],
+            ['label' => 'Направления', 'url' => ['/admin/direction']],
             Yii::$app->user->isGuest ? (
             ['label' => 'Вход', 'url' => ['/auth/login']]
             ) : (

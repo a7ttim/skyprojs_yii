@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "department".
  *
- * @property int $department_id
+ * @property integer $department_id
  * @property string $department_name
- * @property int $department_parent_id
+ * @property integer $department_parent_id
  *
  * @property Working[] $workings
  * @property Project[] $projects
@@ -30,11 +30,9 @@ class Department extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['department_id', 'department_name'], 'required'],
-            [['department_id', 'department_parent_id'], 'default', 'value' => null],
-            [['department_id', 'department_parent_id'], 'integer'],
+            [['department_name'], 'required'],
+            [['department_parent_id'], 'integer'],
             [['department_name'], 'string', 'max' => 254],
-            [['department_id'], 'unique'],
         ];
     }
 

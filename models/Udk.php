@@ -7,10 +7,10 @@ use Yii;
 /**
  * This is the model class for table "udk".
  *
- * @property int $udk_id
+ * @property integer $udk_id
  * @property string $udk_code
  * @property string $udk_name
- * @property int $udk_parent_id
+ * @property integer $udk_parent_id
  *
  * @property Classificate2[] $classificate2s
  * @property Project[] $projects
@@ -31,12 +31,10 @@ class Udk extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['udk_id', 'udk_code', 'udk_name'], 'required'],
-            [['udk_id', 'udk_parent_id'], 'default', 'value' => null],
-            [['udk_id', 'udk_parent_id'], 'integer'],
+            [['udk_code', 'udk_name'], 'required'],
             [['udk_name'], 'string'],
+            [['udk_parent_id'], 'integer'],
             [['udk_code'], 'string', 'max' => 254],
-            [['udk_id'], 'unique'],
         ];
     }
 

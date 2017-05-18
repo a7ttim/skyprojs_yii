@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Udk */
 
-$this->title = 'Update Udk: ' . $model->udk_id;
-$this->params['breadcrumbs'][] = ['label' => 'Udks', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->udk_id, 'url' => ['view', 'id' => $model->udk_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Изменить УДК: ' . $model->udk_code;
+$this->params['breadcrumbs'][] = ['label' => 'УДК', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->udk_code, 'url' => ['view', 'id' => $model->udk_id]];
+$this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="udk-update">
 

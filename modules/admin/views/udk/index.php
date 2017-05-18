@@ -5,11 +5,12 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use app\models\Udk;
 use \yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UdkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Udks';
+$this->title = 'УДК';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="udk-index">
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Udk', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать УДК', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\ActionColumn'],
             [
                 'value' => function (Udk $udk) {
-                    return Html::a('<span class="fa fa-search"></span>open', Url::to(['view', 'id' => $udk->udk_id]), [
+                    return Html::a('<span class="fa fa-search"></span>открыть', Url::to(['view', 'id' => $udk->udk_id]), [
                         'title' => Yii::t('app', 'open'),
                         'class' =>'btn btn-info btn-xs',
                     ]);
@@ -46,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'value' => function (Udk $udk) {
-                    return Html::a('<span class="fa fa-search"></span>update', Url::to(['update', 'id' => $udk->udk_id]), [
+                    return Html::a('<span class="fa fa-search"></span>изменить', Url::to(['update', 'id' => $udk->udk_id]), [
                         'title' => Yii::t('app', 'update'),
                         'class' =>'btn btn-primary btn-xs',
                     ]);
@@ -56,9 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'value' => function (Udk $udk) {
-                    return Html::a('<span class="fa fa-search"></span>delete', Url::to(['delete', 'id' => $udk->udk_id]), [
+                    return Html::a('<span class="fa fa-search"></span>удалить', Url::to(['delete', 'id' => $udk->udk_id]), [
                         'title' => Yii::t('app', 'delete'),
                         'class' =>'btn btn-danger btn-xs',
+                        'data'=>['method' => 'post'],
                     ]);
                 },
                 'headerOptions' => ['style' => 'width:10px'],

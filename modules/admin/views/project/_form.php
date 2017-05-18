@@ -32,6 +32,42 @@ use app\models\Udk;
     ])->label('УДК');
     ?>
 
+    <?= $form->field($model, 'grntis_array')->widget(Select2::classname(), [
+        'attribute' => 'grntis',
+        'language' => 'ru',
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Grnti::find()->all(), 'grnti_id', 'grnti_code'),
+        'options' => ['placeholder' => 'Выбрать ГРНТИ ...', 'multiple' => true],
+        'pluginOptions' => [
+            'tokenSeparators' => [',', ' '],
+            'maximumInputLength' => 10
+        ],
+    ])->label('ГРНТИ');
+    ?>
+
+    <?= $form->field($model, 'directions_array')->widget(Select2::classname(), [
+        'attribute' => 'directions',
+        'language' => 'ru',
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Directions::find()->all(), 'direction_id', 'direction_name'),
+        'options' => ['placeholder' => 'Выбрать направление ...', 'multiple' => true],
+        'pluginOptions' => [
+            'tokenSeparators' => [',', ' '],
+            'maximumInputLength' => 10
+        ],
+    ])->label('Направления');
+    ?>
+
+    <?= $form->field($model, 'departments_array')->widget(Select2::classname(), [
+        'attribute' => 'departments',
+        'language' => 'ru',
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(), 'department_id', 'department_name'),
+        'options' => ['placeholder' => 'Выбрать подразделение ...', 'multiple' => true],
+        'pluginOptions' => [
+            'tokenSeparators' => [',', ' '],
+            'maximumInputLength' => 10
+        ],
+    ])->label('Подразделения');
+    ?>
+
     <?= $form->field($model, 'project_area')->textarea(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'project_advantages')->textarea(['maxlength' => true]) ?>
