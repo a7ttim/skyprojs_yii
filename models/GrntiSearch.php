@@ -18,7 +18,7 @@ class GrntiSearch extends grnti
     public function rules()
     {
         return [
-            [['grnti_id', 'grnti_parent_id'], 'integer'],
+            [['grnti_id'], 'integer'],
             [['grnti_code', 'grnti_name'], 'safe'],
         ];
     }

@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\udk;
+use app\models\Udk;
 
 /**
- * UdkSearch represents the model behind the search form about `app\models\udk`.
+ * UdkSearch represents the model behind the search form about `app\models\Udk`.
  */
-class UdkSearch extends udk
+class UdkSearch extends Udk
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class UdkSearch extends udk
     public function rules()
     {
         return [
-            [['udk_id', 'udk_parent_id'], 'integer'],
+            [['udk_id'], 'integer'],
             [['udk_code', 'udk_name'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class UdkSearch extends udk
      */
     public function search($params)
     {
-        $query = udk::find();
+        $query = Udk::find();
 
         // add conditions that should always apply here
 
@@ -60,7 +60,6 @@ class UdkSearch extends udk
         // grid filtering conditions
         $query->andFilterWhere([
             'udk_id' => $this->udk_id,
-            'udk_parent_id' => $this->udk_parent_id,
         ]);
 
         $query->andFilterWhere(['like', 'udk_code', $this->udk_code])

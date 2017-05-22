@@ -6,8 +6,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Udk */
 
-$this->title = 'Create Udk';
-$this->params['breadcrumbs'][] = ['label' => 'Udks', 'url' => ['index']];
+$this->title = 'Создать УДК';
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['/admin']];
+$this->params['breadcrumbs'][] = ['label' => 'УДК', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="udk-create">

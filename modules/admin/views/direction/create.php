@@ -6,8 +6,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\directions */
 
-$this->title = Yii::t('app', 'Create Directions');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Directions'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Создать направление');
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['/admin']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Направление'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="directions-create">

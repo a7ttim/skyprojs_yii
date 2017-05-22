@@ -11,6 +11,7 @@ use \yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'УДК';
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['/admin']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="udk-index">
@@ -29,16 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'udk_id',
+            //'udk_id',
             'udk_code',
             'udk_name:ntext',
-            'udk_parent_id',
+            //'udk_parent_id',
+            [
+                'attribute' => 'udk_parent_id',
+                'value' => 'udk.udk_code',
+            ],
 
             //['class' => 'yii\grid\ActionColumn'],
             [
                 'value' => function (Udk $udk) {
                     return Html::a('<span class="fa fa-search"></span>открыть', Url::to(['view', 'id' => $udk->udk_id]), [
-                        'title' => Yii::t('app', 'open'),
+                        'title' => Yii::t('app', 'открыть'),
                         'class' =>'btn btn-info btn-xs',
                     ]);
                 },
@@ -48,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'value' => function (Udk $udk) {
                     return Html::a('<span class="fa fa-search"></span>изменить', Url::to(['update', 'id' => $udk->udk_id]), [
-                        'title' => Yii::t('app', 'update'),
+                        'title' => Yii::t('app', 'изменить'),
                         'class' =>'btn btn-primary btn-xs',
                     ]);
                 },
@@ -58,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'value' => function (Udk $udk) {
                     return Html::a('<span class="fa fa-search"></span>удалить', Url::to(['delete', 'id' => $udk->udk_id]), [
-                        'title' => Yii::t('app', 'delete'),
+                        'title' => Yii::t('app', 'удалить'),
                         'class' =>'btn btn-danger btn-xs',
                         'data'=>['method' => 'post'],
                     ]);

@@ -24,12 +24,11 @@ $title_name = 'ОПВРИП | Панель управления';
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <div class="wrap">
     <?php
     NavBar::begin([
         'brandLabel' => $title_name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => '/admin',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -37,11 +36,11 @@ $title_name = 'ОПВРИП | Панель управления';
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Проекты', 'url' => ['/admin/project']],
-            ['label' => 'УДК', 'url' => ['/admin/udk']],
-            ['label' => 'ГРНТИ', 'url' => ['/admin/grnti']],
-            ['label' => 'Подразделения', 'url' => ['/admin/department']],
-            ['label' => 'Направления', 'url' => ['/admin/direction']],
+            //['label' => 'Проекты', 'url' => ['/admin/project']],
+            //['label' => 'УДК', 'url' => ['/admin/udk']],
+            //['label' => 'ГРНТИ', 'url' => ['/admin/grnti']],
+            //['label' => 'Подразделения', 'url' => ['/admin/department']],
+            //['label' => 'Направления', 'url' => ['/admin/direction']],
             Yii::$app->user->isGuest ? (
             ['label' => 'Вход', 'url' => ['/auth/login']]
             ) : (
@@ -49,6 +48,24 @@ $title_name = 'ОПВРИП | Панель управления';
             )
         ],
     ]);
+
+    echo !Yii::$app->user->isGuest ? Nav::widget([
+        'items' => [
+            [
+                'label' => 'Действия',
+                'items' => [
+                    //'<li class="dropdown-header">Dropdown Header</li>',
+                    ['label' => 'Проекты', 'url' => ['/admin/project']],
+                    ['label' => 'УДК', 'url' => ['/admin/udk']],
+                    ['label' => 'ГРНТИ', 'url' => ['/admin/grnti']],
+                    ['label' => 'Подразделения', 'url' => ['/admin/department']],
+                    ['label' => 'Направления', 'url' => ['/admin/direction']],
+                    //'<li class="divider"></li>',
+                ],
+            ],
+        ],
+        'options' => ['class' =>'navbar-nav'],
+    ]): '';
     NavBar::end();
     ?>
 

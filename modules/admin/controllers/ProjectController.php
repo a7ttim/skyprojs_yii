@@ -118,7 +118,7 @@ class ProjectController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = project::findOne($id)) !== null) {
+        if (($model = project::find()->where(['project_id' => $id])->with('udks', 'grntis', 'departments', 'directions')->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

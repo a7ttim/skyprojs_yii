@@ -18,7 +18,7 @@ class DepartmentSearch extends department
     public function rules()
     {
         return [
-            [['department_id', 'department_parent_id'], 'integer'],
+            [['department_id'], 'integer'],
             [['department_name'], 'safe'],
         ];
     }
@@ -60,7 +60,6 @@ class DepartmentSearch extends department
         // grid filtering conditions
         $query->andFilterWhere([
             'department_id' => $this->department_id,
-            'department_parent_id' => $this->department_parent_id,
         ]);
 
         $query->andFilterWhere(['like', 'department_name', $this->department_name]);

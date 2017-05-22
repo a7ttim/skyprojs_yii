@@ -6,9 +6,10 @@ use yii\helpers\Html;
 /* @var $model app\models\Udk */
 
 $this->title = 'Изменить УДК: ' . $model->udk_code;
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['/admin']];
 $this->params['breadcrumbs'][] = ['label' => 'УДК', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->udk_code, 'url' => ['view', 'id' => $model->udk_id]];
-$this->params['breadcrumbs'][] = 'Изменить';
+$this->params['breadcrumbs'][] = Yii::t('app', 'Изменить');
 ?>
 <div class="udk-update">
 
