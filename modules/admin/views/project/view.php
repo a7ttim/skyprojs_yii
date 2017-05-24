@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\project */
 
 $this->title = $model->project_name;
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['/admin']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Проекты'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -23,84 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-    <table class="table table-striped table-bordered detail-view">
-        <tr>
-            <th>
-                УДК
-            </th>
-            <td>
-                <ul>
-                    <?
-                    foreach ($model->udks as $udk){
-                        ?>
-                        <li>
-                            <?
-                            echo $udk->udk_code;
-                            ?>
-                        </li>
-                        <?
-                    }?>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                ГРНТИ
-            </th>
-            <td>
-                <ul>
-                    <?
-                    foreach ($model->grntis as $grnti){
-                        ?>
-                        <li>
-                            <?
-                            echo $grnti->grnti_code;
-                            ?>
-                        </li>
-                        <?
-                    }?>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Подразделения
-            </th>
-            <td>
-                <ul>
-                    <?
-                    foreach ($model->departments as $department){
-                        ?>
-                        <li>
-                            <?
-                            echo $department->department_name;
-                            ?>
-                        </li>
-                        <?
-                    }?>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Направления
-            </th>
-            <td>
-                <ul>
-                    <?
-                    foreach ($model->directions as $direction){
-                        ?>
-                        <li>
-                            <?
-                            echo $direction->direction_name;
-                            ?>
-                        </li>
-                        <?
-                    }?>
-                </ul>
-            </td>
-        </tr>
-    </table>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -114,5 +38,59 @@ $this->params['breadcrumbs'][] = $this->title;
             'project_protection',
         ],
     ]) ?>
+    <table class="table table-striped table-bordered detail-view">
+        <tr>
+            <th class="col-md-3">
+                УДК
+            </th>
+            <td>
+                <?
+                foreach ($model->udks as $udk){
+                    ?>
+                    <?= Html::a(Yii::t('app', $udk->udk_code), ['udk/view', 'id' => $udk->udk_id], ['class' => 'btn btn-primary btn-xs']) ?>
+                    <?
+                }?>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                ГРНТИ
+            </th>
+            <td>
+                <?
+                foreach ($model->grntis as $grnti){
+                    ?>
+                    <?= Html::a(Yii::t('app', $grnti->grnti_code), ['grnti/view', 'id' => $grnti->grnti_id], ['class' => 'btn btn-primary btn-xs']) ?>
+                    <?
+                }?>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Подразделения
+            </th>
+            <td>
+                <?
+                foreach ($model->departments as $department){
+                    ?>
+                    <?= Html::a(Yii::t('app', $department->department_name), ['department/view', 'id' => $department->department_id], ['class' => 'btn btn-primary btn-xs']) ?>
+                    <?
+                }?>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Направления
+            </th>
+            <td>
+                <?
+                foreach ($model->directions as $direction){
+                    ?>
+                    <?= Html::a(Yii::t('app', $direction->direction_name), ['direction/view', 'id' => $direction->direction_id], ['class' => 'btn btn-primary btn-xs']) ?>
+                    <?
+                }?>
+            </td>
+        </tr>
+    </table>
 
 </div>

@@ -8,6 +8,7 @@ use app\models\GrntiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * GrntiController implements the CRUD actions for grnti model.
@@ -17,9 +18,26 @@ class GrntiController extends Controller
     /**
      * @inheritdoc
      */
+
     public function behaviors()
     {
         return [
+            'access'    =>  [
+                'class' =>  AccessControl::className(),
+                'denyCallback'  =>  function($rule, $action)
+                {
+                    throw new \yii\web\NotFoundHttpException('Page not found.');
+                },
+                'rules' =>  [
+                    [
+                        'allow' =>  true,
+                        'matchCallback' =>  function($rule, $action)
+                        {
+                            return !Yii::$app->user->isGuest;
+                        }
+                    ]
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

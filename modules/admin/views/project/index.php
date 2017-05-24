@@ -29,10 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            // 'project_id',
             'project_name',
-            // 'project_area',
-            // 'project_advantages',
             [
                 'attribute' => 'project_specifications',
                 'format' => 'text',
@@ -41,8 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'project_date',
-            // 'project_consumers',
-            // 'project_protection',
             [
                 'value' => function (Project $project) {
                     return Html::a('<span class="fa fa-search"></span>открыть', Url::to(['view', 'id' => $project->project_id]), [

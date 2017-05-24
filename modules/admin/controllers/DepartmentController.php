@@ -8,6 +8,7 @@ use app\models\DepartmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * DepartmentController implements the CRUD actions for department model.
@@ -17,9 +18,26 @@ class DepartmentController extends Controller
     /**
      * @inheritdoc
      */
+
     public function behaviors()
     {
         return [
+            'access'    =>  [
+                'class' =>  AccessControl::className(),
+                'denyCallback'  =>  function($rule, $action)
+                {
+                    throw new \yii\web\NotFoundHttpException('Page not found.');
+                },
+                'rules' =>  [
+                    [
+                        'allow' =>  true,
+                        'matchCallback' =>  function($rule, $action)
+                        {
+                            return !Yii::$app->user->isGuest;
+                        }
+                    ]
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

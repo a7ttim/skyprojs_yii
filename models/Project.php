@@ -48,9 +48,9 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['project_name', 'project_date', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'required'],
+            [['project_name', 'project_date'], 'required'],
             [['project_date'], 'safe'],
-            [['project_name', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'string', 'max' => 254],
+            [['project_name', 'project_area', 'project_advantages', 'project_specifications', 'project_consumers', 'project_protection'], 'string', 'max' => 510],
             [['udks_array', 'grntis_array', 'directions_array', 'departments_array'], 'safe'],
         ];
     }
@@ -68,7 +68,6 @@ class Project extends \yii\db\ActiveRecord
             'project_advantages' => 'Преимущества',
             'project_specifications' => 'Спецификации',
             'project_consumers' => 'Потребители',
-            'project_protection' => 'Защита',
             'project_protection' => 'Защита',
         ];
     }

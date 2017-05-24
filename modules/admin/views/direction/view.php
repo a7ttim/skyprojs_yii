@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\directions */
 
 $this->title = $model->direction_name;
+$this->params['breadcrumbs'][] = ['label' => 'Панель управления', 'url' => ['/admin']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Направления'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
