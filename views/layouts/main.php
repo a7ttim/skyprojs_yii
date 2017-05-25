@@ -3,14 +3,15 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\widgets\Menu;
 
 AppAsset::register($this);
-$title_name = 'ОПВРИП';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -22,56 +23,132 @@ $title_name = 'ОПВРИП';
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+<div class="navig">
+<?php
+echo Nav::widget([
+    'items' => [
+        [
+            'label' => 'О ТУСУРе',
+            'items' => [
+                 ['label' => 'Структура и органы управления', 'url' => 'https://tusur.ru/ru/o-tusure/struktura-i-organy-upravleniya'],
+                 ['label' => 'Образование', 'url' => 'https://tusur.ru/ru/obrazovanie'],
+                 ['label' => 'Наука и инновации', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii'],
+                 ['label' => 'Сотрудничество', 'url' => 'https://tusur.ru/ru/sotrudnichestvo'],
+                 ['label' => 'Новости и мероприятия', 'url' => 'https://tusur.ru/ru/novosti-i-meropriyatiya'],
+                 ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
+                 ['label' => 'Сведения об образовательной организации', 'url' => 'https://tusur.ru/sveden'],
+                 ['label' => 'База нормативных документов', 'url' => 'https://regulations.tusur.ru/'],
+            ],
+        ],
+        [
+            'label' => 'Абитуриентам',
+            'items' => [
+                 ['label' => 'Кабинет абитуриента', 'url' => 'https://priem.tusur.ru/'],
+                 ['label' => 'Направления подготовки бакалавров и специалистов', 'url' => 'https://abiturient.tusur.ru/ru/napravleniya-podgotovki/ochnaya-forma-obucheniya'],
+                 ['label' => 'Магистерские программы', 'url' => 'https://magistrant.tusur.ru/ru/magisterskie-programmy/ochnaya-forma-obucheniya'],
+                 ['label' => 'Календарь абитуриента', 'url' => 'https://abiturient.tusur.ru/ru/kak-postupit/ochnaya-forma-obucheniya?type=vst_ege,doc_budget,zach_budget,info'],
+                 ['label' => 'Пункты выезда приёмных комиссий', 'url' => 'https://abiturient.tusur.ru/ru/kontakty#comissions'],
+            ],
+        ],
+        [
+            'label' => 'Студентам',
+            'items' => [
+                 ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
+                 ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
+                 ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
+                 ['label' => 'Групповое проектное обучение', 'url' => 'https://gpo.tusur.ru/'],
+                 ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
+                 ['label' => 'Журнал успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
+                 ['label' => 'Профком студентов', 'url' => 'http://studprof.tusur.ru/'],
+                 ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
+            ],
+        ],
+        [
+            'label' => 'Аспирантам',
+            'items' => [
+                 ['label' => 'Поступление в аспирантуру', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/postuplenie-v-aspiranturu'],
+                 ['label' => 'Направления подготовки', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/napravleniya-podgotovki'],
+                 ['label' => 'Диссертационные советы', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii/podgotovka-kadrov-vysshey-nauchnoy-kvalifikatsii/dissertatsionnye-sovety'],
+                 ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
+                 ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
+                 ['label' => 'Журнал "Доклады ТУСУР"', 'url' => 'https://journal.tusur.ru/'],
+            ],
+        ],
+        [
+            'label' => 'Сотрудникам',
+            'items' => [
+                 ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
+                 ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
+                 ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
+                 ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
+                 ['label' => 'Генератор рабочих программ', 'url' => 'https://workprogram.tusur.ru/'],
+                 ['label' => 'Ввод успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
+                 ['label' => 'Показатели эффективности труда ППС', 'url' => 'https://effective-contracts.tusur.ru/docs'],
+                 ['label' => 'Профком сотрудников', 'url' => 'http://profkom.tusur.ru/'],
+            ],
+        ],
+        [
+            'label' => 'Выпускникам',
+            'items' => [
+                 ['label' => 'Ассоциация выпускников ТУСУР', 'url' => 'http://avt.tusur.ru/'],
+                 ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
+            ],
+        ],
+        [
+            'label' => 'Войти',
+            'url' => ['site/login'],
+            'options' => ['class' => 'login'],
+        ],
+    ],
+    'options' => ['class' =>'nav-pills'], // set this to nav-tab to get tab-styled navigation
+]);
+?>
+</div>
 <body>
-<?php $this->beginBody() ?>
-
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => $title_name,
+        'brandLabel' => Html::img('@web/img/TUSUR_logo.png', ['alt'=>Yii::$app->name]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav'],
         'items' => [
-            !Yii::$app->user->isGuest ? (
-                    ['label' => 'Админ', 'url' => ['/admin']]
-                ) : (
-                        ''
-            ),
-            ['label' => 'Проекты', 'url' => ['/site/projects']],
-            ['label' => 'УДК', 'url' => ['/site/udks']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Вход', 'url' => ['/auth/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/auth/logout'], 'post')
-                . Html::submitButton(
-                    'Выход (' . Yii::$app->user->identity->admin_login . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+            ['label' => 'Реестр проектов', 'url' => ['/site/index']],
         ],
     ]);
     NavBar::end();
     ?>
-
+    <?php
+    echo Menu::widget([
+    'items' => [
+        ['label' => 'Главная', 'url' => ['site/index']],
+        ['label' => 'УДК', 'url' => ['site/udk']],
+        ['label' => 'ГРНТИ', 'url' => ['site/grnti']],
+        ['label' => 'Подразделения', 'url' => ['site/departments']],
+        ],
+        'options' => [
+					'class' => 'navi',
+				],
+]);
+?>
+<?php $this->beginBody() ?>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <div class = 'index'>
         <?= $content ?>
+        </div>
     </div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?=$title_name.' '.date('Y') ?></p>
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

@@ -5,16 +5,16 @@ use app\models\Udk;
 use app\models\Grnti;
 if (count($projects) == 0)
 {
-$this->title = 'Подразделения'; ?>
+$this->title = 'ГРНТИ'; ?>
 <div class = 'index1'>
 <div class = 'title'>
-<h1>Подразделения</h1>
+<h1>ГРНТИ</h1>
 </div>
 <ul>
 <div class = 'directions'>
 <?php
-foreach ($departments as $department) {?>
-<li><div class = 'projects'><a href="<?=Yii::$app->urlManager->createUrl(['site/departments', 'id' => $department->department_id])?>"><?=$department->department_name?></a></li>
+foreach ($grnti as $item) {?>
+<li><div class = 'projects'><a href="<?=Yii::$app->urlManager->createUrl(['site/grnti', 'id' => $item->grnti_id])?>"><?=$item->grnti_name?></a></li>
 <?php }?>
 </div>
 </div>

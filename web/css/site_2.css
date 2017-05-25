@@ -1,0 +1,139 @@
+.navig {
+    padding-left: 7%;
+    display:block;
+    min-height: 42px;
+    background-color:#d1d4d3;
+}
+.navi {
+  height: 49px;
+  width: 100%;
+  background-color: #005bae;
+  display: inline-block;
+}
+.navi > li {
+  float: left;
+  display: block;
+  line-height: 49px;
+  margin-left: 15%;
+}
+.navi > li > a {
+  color:white;
+  padding:0 10px;
+  font-family:"Cuprum",sans-serif;
+  text-decoration:none;
+  line-height:49px;
+  display:block;
+}
+.navi > li > a:hover {
+  transition: all .3s linear;
+  text-decoration: underline;
+  background-color: white;
+  color: black;
+}
+.login {
+    padding-left:25%;
+    min-height: 42px;
+    display: inline-block;
+}
+.index {
+    min-height: 73vh;
+}
+.index1 {
+    background-color: #d1d4d3;
+    border:1px solid gray;
+    border-radius: 5px;
+    margin-left: 15%;
+    height:100%;
+    width:70%;
+}
+.title {
+    margin: 0 px;
+}
+.title h1 {
+    margin-left: 15px;
+    color: black;
+}
+.directions li a {
+    text-decoration: underline;
+    color: black;
+}
+.footer{
+    position: absolute;
+    width: 100%;
+}
+.proj_content {
+    padding: 25px 30px 50px 30px;
+    margin-top:1%;
+    background-color:#d1d4d3;
+    border-radius:5px;
+    float: left;
+    margin-left:10%;
+    width:80%;
+    height: auto;
+    display: block;
+    border:1px solid gray;
+}
+.project {
+    display:inline-block;
+    width:65%;
+}
+.projects {
+    padding: 0.3%;
+    margin-bottom: 1%;
+    width: 90%;
+    height: auto;
+    background-color: white;
+    text-align: left;
+    border-radius: 5px;
+    }
+.zag {
+    color: black;
+    font-weight:bold;
+    width:100%;
+    font-size:18px;
+}
+.desc {
+    color: black;
+    margin-left: 5px;
+    width:100%;
+    height:auto;
+    margin-bottom:10px;
+}
+.right {
+    color: black;
+    float: right;
+    width: 30%;
+    margin-left: 2%;
+}
+.right > h3 {
+    color: black;
+}
+.project_name {
+    margin: 3vh 0;
+    width:60%;
+    margin-left:10px;
+    display:inline-block;
+    text-decoration:none;
+}
+.codes_full {
+    height: 100%;
+    width: 19%;
+    color: black;
+    padding: 0 5px;
+    font-size: 12px;
+    display: inline-block;
+    float: right;
+}
+.code {
+    display: block;
+    text-decoration: underline;
+}
+.codes {
+    display: inline-block;
+    float: right;
+}
+.udk_projs
+{
+    float: right;
+    margin-right: 2%;
+}

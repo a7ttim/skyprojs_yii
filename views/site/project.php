@@ -1,61 +1,41 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: A7ttim
- * Date: 19.02.2017
- * Time: 17:03
- */
-
-use yii\widgets\LinkPager;
-
-$this->title = $project->project_name;
-//$this->params['breadcrumbs'][] = $this->title;
+﻿<?php $this->title = $project->project_name; ?>
+<div class = 'proj_content'>
+<div class = 'title'>
+<h1><?php echo $project->project_name;?></h1>
+</div>
+<div class = 'project'>
+<div class = 'zag'>
+Направление
+</div>
+<div class = 'desc'>
+<?php echo $project->project_area;?>
+</div>
+<div class = 'zag'>
+Преимущества
+</div>
+<div class = 'desc'>
+<?php echo $project->project_advantages;?>
+</div>
+<div class = 'zag'>
+Спецификации
+</div>
+<div class = 'desc'>
+<?php echo $project->project_specifications;?>
+</div>
+<div class = 'zag'>
+Заинтересованные струкутуры
+</div>
+<div class = 'desc'>
+<?php echo $project->project_consumers;?>
+</div>
+</div>
+<div class = 'right'>
+<h3>
+Участники проекта
+</h3>
+<?php foreach ($members as $member) {
+echo $member->member_surname.'&nbsp'.$member->member_name.'&nbsp'.$member->member_patronymic;
+}
 ?>
-<h1>
-    <?=
-    $project->project_name
-    ?>
-</h1>
-<p>
-    <?=
-    $project->project_specifications
-    ?>
-</p>
-<h3>
-    УДК
-</h3>
-<ul>
-    <?
-    foreach ($udks as $udk){
-        ?>
-        <li>
-            <a href="
-            <?=
-            Yii::$app->urlManager->createUrl(['site/udks', 'udk_code' => $udk->udk_id])
-            ?>
-            ">
-                <?=
-                $udk->udk_name
-                ?>
-            </a>
-        </li>
-        <?
-    }
-    ?>
-</ul>
-<h3>
-    Участники
-</h3>
-<ul>
-    <?
-    foreach ($users as $user){
-        ?>
-        <li>
-            <?=
-            $user->member_name
-            ?>
-        </li>
-        <?
-    }
-    ?>
-</ul>
+</div>
+</div>
