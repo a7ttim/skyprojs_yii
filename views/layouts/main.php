@@ -148,9 +148,42 @@ echo Nav::widget([
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="pull-left" id='block2'>
+            <p class='hh'>ПРИЕМНАЯ</p>
+            <p class='hhh'>Телефоны:</p>
+            <p class='tel'>+7 3822 90-00-29 (автосекретарь)</p>
+            <p class='tel'>+7 3822 41-34-03</p>
+            <p class='tel'>+7 3822 41-34-06</p>
+            <p class='hhh'>Факс: (3822) 42-36-15</p>
+            <p class='hhh'>Почта: mic@micran.ru</p>
+        </div>
+        <div class="pull-left" id='block2'>
+            <p class='hh'>АДРЕС:</p>
+            <p>АО «НПФ «Микран»,</p>
+            <p>пр-т Кирова, 51д,</p>
+            <p>г. Томск, Россия, 634041.</p>
+        </div>
+        <div class="pull-left" id='block2'>
+            <p class='hh'>ОФИС В МОСКВЕ</p>
+            <p class='hhh'>Телефон: +7 499 501-76-96</p>
+            <p class='hhh'>Адрес для писем:</p>
+            <p>Славянская площадь,</p>
+            <p>дом 2/5/4 стр. 3</p>
+            <p>Москва, 109074</p>
+        </div>
+        <div class="pull-left" id='block2'>
+            <p class='hh'>ПРЕДСТАВИТЕЛЬСТВО В МОСКВЕ</p>
+            <p class='hhh'>Адрес для писем:</p>
+            <p>Электрический переулок, </p>
+            <p>дом 3/10 строение 3, этаж 4</p>
+            <p>Москва, 123557<p>
+            <p class='hhh'>Почта:Телефон: +7 495 909-36-50 </p>
+            <p class='hhh'>Почта: msk@micran.ru</p>
+        </div>
+    </div>
+    <div class='container-fluid' id='ft'>
+        <p>“Микран” © 1991-<?= date('Y') ?></p>
+        <p>Сайт создан командой TeamLab - MicPro.ru, 2017г.</p>
     </div>
 </footer>
 

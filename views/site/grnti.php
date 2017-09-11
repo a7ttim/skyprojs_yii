@@ -1,6 +1,6 @@
 <?php
-use app\models\Classificate_2;
-use app\models\Classificate_1;
+use app\models\Classificate2;
+use app\models\Classificate1;
 use app\models\Udk;
 use app\models\Grnti;
 if (count($projects) == 0)
@@ -32,8 +32,8 @@ $this->title = 'Проекты'; ?>
 <div class = 'directions'>
 <?php
 foreach ($projects as $project) {
-    $udks = Classificate_2::find()->where(['project_id'=>$project->project_id])->all();
-    $grntis = Classificate_1::find()->where(['project_id'=>$project->project_id])->all();?>
+    $udks = Classificate2::find()->where(['project_id'=>$project->project_id])->all();
+    $grntis = Classificate1::find()->where(['project_id'=>$project->project_id])->all();?>
     <li> <div class = 'projects'><a href="<?=Yii::$app->urlManager->createUrl(['site/project', 'id' => $project->project_id])?>"><div class = 'project_name'><?=$project->project_name?></a></div>
     <div class = 'codes_full'>
     <?php

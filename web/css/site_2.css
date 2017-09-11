@@ -57,10 +57,12 @@
     text-decoration: underline;
     color: black;
 }
+
 .footer{
     position: absolute;
     width: 100%;
 }
+
 .proj_content {
     padding: 25px 30px 50px 30px;
     margin-top:1%;

@@ -137,6 +137,29 @@ class SiteController extends Controller
         );
     }
 
+    public function actionSearch()
+    {
+        $radio = Yii::$app->request->get("radio");
+        $search = Yii::$app->request->get("search");
+        if ($radio == 'class')
+        {
+            $udk = Udk::find()->orWhere(['LIKE', 'udk_code', $search])->orWhere(['LIKE', 'udk_name', $search])->all();
+            $grnti = Grnti::find()->orWhere(['LIKE', 'grnti_code', $search])->orWhere(['LIKE', 'grnti_name', $search])->all();
+        }
+        else if ($radio == 'proj')
+        {
+            $projects = Project::find()->where(['LIKE', 'project_name', $search])->all();
+        }
+        else
+        {
+            $departments = Department::find()->where(['LIKE', 'department_name', $search])->all();
+        }
+
+        return $this->render(
+            'search', ['radio' => $radio, 'udk' => $udk, 'grnti' => $grnti, 'projects' => $projects, 'departments' => $departments]
+        );
+    }
+
     /**
      * Login action.
      *
@@ -195,6 +218,10 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    public function actionHellou()
+    {
+        return $this->render('hello');
     }
 
 }
