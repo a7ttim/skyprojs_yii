@@ -3,7 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -12,6 +12,9 @@ use app\assets\AppAsset;
 use yii\widgets\Menu;
 
 AppAsset::register($this);
+
+$action = Yii::$app->controller->action->id;
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,92 +27,92 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <div class="navig">
-<?php
-echo Nav::widget([
-    'items' => [
-        [
-            'label' => 'О ТУСУРе',
-            'items' => [
-                 ['label' => 'Структура и органы управления', 'url' => 'https://tusur.ru/ru/o-tusure/struktura-i-organy-upravleniya'],
-                 ['label' => 'Образование', 'url' => 'https://tusur.ru/ru/obrazovanie'],
-                 ['label' => 'Наука и инновации', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii'],
-                 ['label' => 'Сотрудничество', 'url' => 'https://tusur.ru/ru/sotrudnichestvo'],
-                 ['label' => 'Новости и мероприятия', 'url' => 'https://tusur.ru/ru/novosti-i-meropriyatiya'],
-                 ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
-                 ['label' => 'Сведения об образовательной организации', 'url' => 'https://tusur.ru/sveden'],
-                 ['label' => 'База нормативных документов', 'url' => 'https://regulations.tusur.ru/'],
+    <?php
+    echo Nav::widget([
+        'items' => [
+            [
+                'label' => 'О ТУСУРе',
+                'items' => [
+                    ['label' => 'Структура и органы управления', 'url' => 'https://tusur.ru/ru/o-tusure/struktura-i-organy-upravleniya'],
+                    ['label' => 'Образование', 'url' => 'https://tusur.ru/ru/obrazovanie'],
+                    ['label' => 'Наука и инновации', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii'],
+                    ['label' => 'Сотрудничество', 'url' => 'https://tusur.ru/ru/sotrudnichestvo'],
+                    ['label' => 'Новости и мероприятия', 'url' => 'https://tusur.ru/ru/novosti-i-meropriyatiya'],
+                    ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
+                    ['label' => 'Сведения об образовательной организации', 'url' => 'https://tusur.ru/sveden'],
+                    ['label' => 'База нормативных документов', 'url' => 'https://regulations.tusur.ru/'],
+                ],
+            ],
+            [
+                'label' => 'Абитуриентам',
+                'items' => [
+                    ['label' => 'Кабинет абитуриента', 'url' => 'https://priem.tusur.ru/'],
+                    ['label' => 'Направления подготовки бакалавров и специалистов', 'url' => 'https://abiturient.tusur.ru/ru/napravleniya-podgotovki/ochnaya-forma-obucheniya'],
+                    ['label' => 'Магистерские программы', 'url' => 'https://magistrant.tusur.ru/ru/magisterskie-programmy/ochnaya-forma-obucheniya'],
+                    ['label' => 'Календарь абитуриента', 'url' => 'https://abiturient.tusur.ru/ru/kak-postupit/ochnaya-forma-obucheniya?type=vst_ege,doc_budget,zach_budget,info'],
+                    ['label' => 'Пункты выезда приёмных комиссий', 'url' => 'https://abiturient.tusur.ru/ru/kontakty#comissions'],
+                ],
+            ],
+            [
+                'label' => 'Студентам',
+                'items' => [
+                    ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
+                    ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
+                    ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
+                    ['label' => 'Групповое проектное обучение', 'url' => 'https://gpo.tusur.ru/'],
+                    ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
+                    ['label' => 'Журнал успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
+                    ['label' => 'Профком студентов', 'url' => 'http://studprof.tusur.ru/'],
+                    ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
+                ],
+            ],
+            [
+                'label' => 'Аспирантам',
+                'items' => [
+                    ['label' => 'Поступление в аспирантуру', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/postuplenie-v-aspiranturu'],
+                    ['label' => 'Направления подготовки', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/napravleniya-podgotovki'],
+                    ['label' => 'Диссертационные советы', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii/podgotovka-kadrov-vysshey-nauchnoy-kvalifikatsii/dissertatsionnye-sovety'],
+                    ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
+                    ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
+                    ['label' => 'Журнал "Доклады ТУСУР"', 'url' => 'https://journal.tusur.ru/'],
+                ],
+            ],
+            [
+                'label' => 'Сотрудникам',
+                'items' => [
+                    ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
+                    ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
+                    ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
+                    ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
+                    ['label' => 'Генератор рабочих программ', 'url' => 'https://workprogram.tusur.ru/'],
+                    ['label' => 'Ввод успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
+                    ['label' => 'Показатели эффективности труда ППС', 'url' => 'https://effective-contracts.tusur.ru/docs'],
+                    ['label' => 'Профком сотрудников', 'url' => 'http://profkom.tusur.ru/'],
+                ],
+            ],
+            [
+                'label' => 'Выпускникам',
+                'items' => [
+                    ['label' => 'Ассоциация выпускников ТУСУР', 'url' => 'http://avt.tusur.ru/'],
+                    ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
+                ],
+            ],
+            [
+                'label' => 'Войти',
+                'url' => ['auth/login'],
+                'options' => ['class' => 'login'],
             ],
         ],
-        [
-            'label' => 'Абитуриентам',
-            'items' => [
-                 ['label' => 'Кабинет абитуриента', 'url' => 'https://priem.tusur.ru/'],
-                 ['label' => 'Направления подготовки бакалавров и специалистов', 'url' => 'https://abiturient.tusur.ru/ru/napravleniya-podgotovki/ochnaya-forma-obucheniya'],
-                 ['label' => 'Магистерские программы', 'url' => 'https://magistrant.tusur.ru/ru/magisterskie-programmy/ochnaya-forma-obucheniya'],
-                 ['label' => 'Календарь абитуриента', 'url' => 'https://abiturient.tusur.ru/ru/kak-postupit/ochnaya-forma-obucheniya?type=vst_ege,doc_budget,zach_budget,info'],
-                 ['label' => 'Пункты выезда приёмных комиссий', 'url' => 'https://abiturient.tusur.ru/ru/kontakty#comissions'],
-            ],
-        ],
-        [
-            'label' => 'Студентам',
-            'items' => [
-                 ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
-                 ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
-                 ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
-                 ['label' => 'Групповое проектное обучение', 'url' => 'https://gpo.tusur.ru/'],
-                 ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
-                 ['label' => 'Журнал успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
-                 ['label' => 'Профком студентов', 'url' => 'http://studprof.tusur.ru/'],
-                 ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
-            ],
-        ],
-        [
-            'label' => 'Аспирантам',
-            'items' => [
-                 ['label' => 'Поступление в аспирантуру', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/postuplenie-v-aspiranturu'],
-                 ['label' => 'Направления подготовки', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/napravleniya-podgotovki'],
-                 ['label' => 'Диссертационные советы', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii/podgotovka-kadrov-vysshey-nauchnoy-kvalifikatsii/dissertatsionnye-sovety'],
-                 ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
-                 ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
-                 ['label' => 'Журнал "Доклады ТУСУР"', 'url' => 'https://journal.tusur.ru/'],
-            ],
-        ],
-        [
-            'label' => 'Сотрудникам',
-            'items' => [
-                 ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
-                 ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
-                 ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
-                 ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
-                 ['label' => 'Генератор рабочих программ', 'url' => 'https://workprogram.tusur.ru/'],
-                 ['label' => 'Ввод успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
-                 ['label' => 'Показатели эффективности труда ППС', 'url' => 'https://effective-contracts.tusur.ru/docs'],
-                 ['label' => 'Профком сотрудников', 'url' => 'http://profkom.tusur.ru/'],
-            ],
-        ],
-        [
-            'label' => 'Выпускникам',
-            'items' => [
-                 ['label' => 'Ассоциация выпускников ТУСУР', 'url' => 'http://avt.tusur.ru/'],
-                 ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
-            ],
-        ],
-        [
-            'label' => 'Войти',
-            'url' => ['site/login'],
-            'options' => ['class' => 'login'],
-        ],
-    ],
-    'options' => ['class' =>'nav-pills'], // set this to nav-tab to get tab-styled navigation
-]);
-?>
+        'options' => ['class' =>'nav-pills'], // set this to nav-tab to get tab-styled navigation
+    ]);
+    ?>
 </div>
 <body>
 <div class="wrap">
     <?php
     NavBar::begin([
         'brandLabel' => Html::img('@web/img/TUSUR_logo.png', ['alt'=>Yii::$app->name]),
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => ['site/index'],
         'options' => [
             'class' => 'navbar-inverse',
         ],
@@ -124,66 +127,43 @@ echo Nav::widget([
     ?>
     <?php
     echo Menu::widget([
-    'items' => [
-        ['label' => 'Главная', 'url' => ['site/index']],
-        ['label' => 'УДК', 'url' => ['site/udk']],
-        ['label' => 'ГРНТИ', 'url' => ['site/grnti']],
-        ['label' => 'Подразделения', 'url' => ['site/departments']],
+        'items' => [
+            ['label' => 'Главная', 'url' => ['site/index']],
+            ['label' => 'УДК', 'url' => ['site/udk']],
+            ['label' => 'ГРНТИ', 'url' => ['site/grnti']],
+            ['label' => 'Подразделения', 'url' => ['site/departments']],
         ],
         'options' => [
-					'class' => 'navi',
-				],
-]);
-?>
-<?php $this->beginBody() ?>
+            'class' => 'navi',
+        ],
+    ]);
+    ?>
+
+    <form id="searchbox" method ="get" action="<?= Yii::$app->request->getBaseUrl() ?>search">
+        <input id="search" type="text" placeholder="Поиск" name="search" required>
+        <input id="submit" type="submit" value="Найти">
+        <div id="radioform">
+            <input id="radio" type="radio" name="radio" value="class" checked=true>Классификаторы
+            <input id="radio" type="radio" name="radio" value="proj">Проекты
+            <input id="radio" type="radio" name="radio" value="dep">Подразделения
+        </div>
+    </form>
+    <?php $this->beginBody() ?>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <div class = 'index'>
-        <?= $content ?>
+            <?= $content ?>
         </div>
     </div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <div class="pull-left" id='block2'>
-            <p class='hh'>ПРИЕМНАЯ</p>
-            <p class='hhh'>Телефоны:</p>
-            <p class='tel'>+7 3822 90-00-29 (автосекретарь)</p>
-            <p class='tel'>+7 3822 41-34-03</p>
-            <p class='tel'>+7 3822 41-34-06</p>
-            <p class='hhh'>Факс: (3822) 42-36-15</p>
-            <p class='hhh'>Почта: mic@micran.ru</p>
-        </div>
-        <div class="pull-left" id='block2'>
-            <p class='hh'>АДРЕС:</p>
-            <p>АО «НПФ «Микран»,</p>
-            <p>пр-т Кирова, 51д,</p>
-            <p>г. Томск, Россия, 634041.</p>
-        </div>
-        <div class="pull-left" id='block2'>
-            <p class='hh'>ОФИС В МОСКВЕ</p>
-            <p class='hhh'>Телефон: +7 499 501-76-96</p>
-            <p class='hhh'>Адрес для писем:</p>
-            <p>Славянская площадь,</p>
-            <p>дом 2/5/4 стр. 3</p>
-            <p>Москва, 109074</p>
-        </div>
-        <div class="pull-left" id='block2'>
-            <p class='hh'>ПРЕДСТАВИТЕЛЬСТВО В МОСКВЕ</p>
-            <p class='hhh'>Адрес для писем:</p>
-            <p>Электрический переулок, </p>
-            <p>дом 3/10 строение 3, этаж 4</p>
-            <p>Москва, 123557<p>
-            <p class='hhh'>Почта:Телефон: +7 495 909-36-50 </p>
-            <p class='hhh'>Почта: msk@micran.ru</p>
-        </div>
-    </div>
-    <div class='container-fluid' id='ft'>
-        <p>“Микран” © 1991-<?= date('Y') ?></p>
-        <p>Сайт создан командой TeamLab - MicPro.ru, 2017г.</p>
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+
+        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 
