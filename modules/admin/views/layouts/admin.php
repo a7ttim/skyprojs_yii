@@ -23,8 +23,9 @@ $title_name = 'ОПВРИП | Панель управления';
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
-<div class="wrap">
+<div class="wrap-admin">
+    <?php $this->beginBody() ?>
+    <div class="container">
     <?php
     NavBar::begin([
         'brandLabel' => $title_name,
@@ -68,8 +69,6 @@ $title_name = 'ОПВРИП | Панель управления';
     ]): '';
     NavBar::end();
     ?>
-
-    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
