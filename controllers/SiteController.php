@@ -72,67 +72,66 @@ class SiteController extends Controller
         $directions = Directions::find()->all();
 
         return $this->render(
-        'index', ['directions' => $directions]
+            'index', ['directions' => $directions]
         );
     }
-    
+
     public function actionDepartments()
     {
         $id = Yii::$app->request->get("id");
-        $departments = Department::find()->where(['department_parent_id'=>$id])->all();
-        $deps = Department::findOne($id);
-        $projects = $deps->projects;
+        $deps = Department::find()->where(['department_parent_id' => $id])->all();
+        $projects = Department::findOne($id)->projects;
 
         return $this->render(
-        'departments', ['departments' => $departments, 'projects' => $projects]
+            'departments', ['departments' => $deps, 'projects' => $projects]
         );
     }
-    
+
     public function actionStatistic()
     {
         $statistic = Project::find()->all();
         return $this->render('statistic', ['statistic' => $statistic]);
     }
-    
+
     public function actionUdk()
     {
         $id = Yii::$app->request->get("id");
         $udk = Udk::find()->where(['udk_parent_id'=>$id])->all();
 
         return $this->render(
-        'udk', ['udk' => $udk]
+            'udk', ['udk' => $udk]
         );
     }
-    
+
     public function actionGrnti()
     {
         $id = Yii::$app->request->get("id");
         $grnti = Grnti::find()->where(['grnti_parent_id'=>$id])->all();
         $grntis = Grnti::findOne($id);
         $projects = $grntis->projects;
-        
+
         return $this->render(
-        'grnti', ['grnti' => $grnti, 'projects' => $projects]
+            'grnti', ['grnti' => $grnti, 'projects' => $projects]
         );
     }
-    
-        public function actionDirections()
+
+    public function actionDirections()
     {
         $id = Yii::$app->request->get("id");
         $dirs = Directions::findOne($id);
         $projects = $dirs->projects;
         $pj = Project::findOne($id);
         $udk = $pj->udks;
-        
+
         return $this->render('directions', ['projects' => $projects, 'udk' => $udk]
         );
     }
-        public function actionProject()
+    public function actionProject()
     {
         $id = Yii::$app->request->get("id");
         $project = Project::findOne($id);
         $members = $project->members;
-        
+
         return $this->render('project', ['project' => $project, 'members' => $members]
         );
     }
@@ -153,11 +152,10 @@ class SiteController extends Controller
         else
         {
             $departments = Department::find()->where(['LIKE', 'department_name', $search])->all();
+            return $this->render(
+                'departments', ['departments' => $departments]
+            );
         }
-
-        return $this->render(
-            'search', ['radio' => $radio, 'udk' => $udk, 'grnti' => $grnti, 'projects' => $projects, 'departments' => $departments]
-        );
     }
 
     /**

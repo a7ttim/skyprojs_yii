@@ -33,7 +33,8 @@ $this->title = 'Проекты'; ?>
                     <?
                     //$pj = $project->project_id;
                     $udks = Classificate2::find()->where(['project_id'=>$project->project_id])->all();
-                    $grntis = Classificate1::find()->where(['project_id'=>$project->project_id])->all();?>
+                    $grntis = Classificate1::find()->where(['project_id'=>$project->project_id])->all();
+                    ?>
 
                     <a href="<?=Yii::$app->urlManager->createUrl(['site/project', 'id' => $project->project_id])?>">
                         <?=$project->project_name?>
