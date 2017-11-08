@@ -17,6 +17,7 @@ use app\models\Grnti;
 use app\models\Working;
 use app\models\Member;
 use app\models\Classificate3;
+use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -69,10 +70,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $directions = Directions::find()->all();
+        $directions = Directions::find()->with('projects')->all();
 
         return $this->render(
-            'index', ['directions' => $directions]
+            'directions', ['directions' => $directions]
         );
     }
 
@@ -93,13 +94,19 @@ class SiteController extends Controller
         return $this->render('statistic', ['statistic' => $statistic]);
     }
 
-    public function actionUdk()
+    public function actionUdks()
     {
-        $id = Yii::$app->request->get("id");
-        $udk = Udk::find()->where(['udk_parent_id'=>$id])->all();
-
+        $id = Yii::$app->request->get("udk_code");
+        $udks = Udk::find()->where(['udk_parent_id'=>$id]);
+        $countUdks = clone $udks;
+        $pages = new Pagination(['totalCount' => $countUdks->count(), 'pageSize' => 1]);
         return $this->render(
-            'udk', ['udk' => $udk]
+            'udks', [
+                'udks' => $udks->offset($pages->offset)
+                    ->limit($pages->limit)
+                    ->all(),
+                'pages' => $pages
+            ]
         );
     }
 
@@ -111,21 +118,39 @@ class SiteController extends Controller
         $projects = $grntis->projects;
 
         return $this->render(
-            'grnti', ['grnti' => $grnti, 'projects' => $projects]
+            'grntis', ['grntis' => $grnti, 'projects' => $projects]
         );
     }
 
     public function actionDirections()
     {
-        $id = Yii::$app->request->get("id");
-        $dirs = Directions::findOne($id);
-        $projects = $dirs->projects;
-        $pj = Project::findOne($id);
-        $udk = $pj->udks;
+        $id = Yii::$app->request->get("direction_id");
+        $projects = Project::find()->where(['directions.direction_id' => $id]);
+        $countProjects = clone $projects;
+        $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 1]);
 
-        return $this->render('directions', ['projects' => $projects, 'udk' => $udk]
+        return $this->render('projects', ['projects' => $projects->offset($pages->offset)
+                ->limit($pages->limit)
+                ->all(),
+                'pages' => $pages
+            ]
         );
     }
+
+    public function actionProjects()
+    {
+        $projects = Project::find();
+        $countProjects = clone $projects;
+        $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 1]);
+
+        return $this->render('projects', ['projects' => $projects->offset($pages->offset)
+                ->limit($pages->limit)
+                ->all(),
+                'pages' => $pages
+            ]
+        );
+    }
+
     public function actionProject()
     {
         $id = Yii::$app->request->get("id");
@@ -166,9 +191,6 @@ class SiteController extends Controller
                     'projects', ['projects' => $projects]
                 );
         }
-        /*return $this->render(
-            'search', ['radio' => $radio, 'udk' => $udk, 'grnti' => $grnti, 'projects' => $projects, 'departments' => $departments]
-        );*/
     }
 
     /**

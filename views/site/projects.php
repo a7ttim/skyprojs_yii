@@ -9,7 +9,7 @@
 use yii\widgets\LinkPager;
 
 $this->title = $title;
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
     Проекты
@@ -43,4 +43,4 @@ $this->params['breadcrumbs'][] = $this->title;
     }
     ?>
 </ul>
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
+<?= LinkPager::widget(['pagination' => $pages]) ?>

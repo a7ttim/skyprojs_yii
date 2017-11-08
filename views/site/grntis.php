@@ -9,7 +9,7 @@
 use yii\widgets\LinkPager;
 
 $this->title = $title;
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
     ГРНТИ
