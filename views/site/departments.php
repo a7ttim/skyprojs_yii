@@ -3,27 +3,28 @@ use app\models\Classificate2;
 use app\models\Classificate1;
 use app\models\Udk;
 use app\models\Grnti;
+
 if (count($projects) == 0)
 {
-$this->title = 'Подразделения'; ?>
-<div class = 'index1'>
-<div class = 'title'>
-<h1>Подразделения</h1>
-</div>
-<ul>
-<div class = 'directions'>
-<?php
-foreach ($departments as $department) {?>
-<li><div class = 'projects'><a href="<?=Yii::$app->urlManager->createUrl(['site/departments', 'id' => $department->department_id])?>"><?=$department->department_name?></a></li>
-<?php }?>
-</div>
-</div>
-</div>
-</ul>
+    $this->title = 'Подразделения'; ?>
+    <div class = 'index1'>
+        <div class = 'title'>
+            <h1>Подразделения</h1>
+        </div>
+        <ul>
+            <div class = 'directions'>
+                <?php
+                foreach ($departments as $department) {?>
+                    <li><div class = 'projects'><a href="<?=Yii::$app->urlManager->createUrl(['site/departments', 'id' => $department->department_id])?>"><?=$department->department_name?></a></li>
+                <?php }?>
+            </div>
+    </div>
+    </div>
+    </ul>
 <?php }
 else
 {
-$this->title = 'Проекты'; ?>
+    $this->title = 'Проекты'; ?>
     <h1>Проекты</h1>
     <ul class="list-group">
         <?php foreach ($projects as $project){ ?>
@@ -32,7 +33,8 @@ $this->title = 'Проекты'; ?>
                     <?
                     //$pj = $project->project_id;
                     $udks = Classificate2::find()->where(['project_id'=>$project->project_id])->all();
-                    $grntis = Classificate1::find()->where(['project_id'=>$project->project_id])->all();?>
+                    $grntis = Classificate1::find()->where(['project_id'=>$project->project_id])->all();
+                    ?>
 
                     <a href="<?=Yii::$app->urlManager->createUrl(['site/project', 'id' => $project->project_id])?>">
                         <?=$project->project_name?>
@@ -71,4 +73,4 @@ $this->title = 'Проекты'; ?>
             <?
         }?>
     </ul>
-<?php } ?>  
+<?php } ?>
