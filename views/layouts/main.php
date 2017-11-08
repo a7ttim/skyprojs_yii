@@ -12,7 +12,7 @@ use app\assets\AppAsset;
 use yii\widgets\Menu;
 
 AppAsset::register($this);
-
+$title_name = 'ОПВРИП | Проекты';
 $action = Yii::$app->controller->action->id;
 
 ?>
@@ -123,8 +123,9 @@ $action = Yii::$app->controller->action->id;
                             </button>
                             <ul class="dropdown-menu pull-right" role="menu">
                                 <li><a href="#" onclick="document.getElementById('radio').value = 'proj';document.getElementById('catName').innerHTML = 'Проекты';">Проекты</a></li>
-                                <li><a href="#" onclick="document.getElementById('radio').value = 'class';document.getElementById('catName').innerHTML = 'Классификаторы';">Классификаторы</a></li>
-                                <li><a href="#" onclick="document.getElementById('radio').value = 'dep';document.getElementById('catName').innerHTML = 'Подразделения';">Подразделения</a></li>
+                                <li><a href="#" onclick="document.getElementById('radio').value = 'grnti';document.getElementById('catName').innerHTML = 'ГРНТИ';">ГРНТИ</a></li>
+                                <li><a href="#" onclick="document.getElementById('radio').value = 'udk';document.getElementById('catName').innerHTML = 'УДК';">УДК</a></li>
+                                <li><a href="#" onclick="document.getElementById('radio').value = 'department';document.getElementById('catName').innerHTML = 'Подразделения';">Подразделения</a></li>
                             </ul>
                             <button type="submit" class="btn btn-primary" tabindex="-1">Поиск</button>
                         </div>
@@ -155,8 +156,6 @@ $action = Yii::$app->controller->action->id;
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; <?=$title_name.' '.date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

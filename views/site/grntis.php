@@ -12,30 +12,30 @@ $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>
-    УДК
+    ГРНТИ
     <?=
     $name
     ?>
 </h1>
 <ul>
     <?
-    foreach ($udks as $udk){
+    foreach ($grntis as $grnti){
         ?>
         <li>
             <h3>
                 <a href="
                 <?=
-                Yii::$app->urlManager->createUrl(['site/udks', 'udk_code' => $udk->udk_id])
+                Yii::$app->urlManager->createUrl(['site/grnti', 'grnti_code' => $grnti->grnti_id])
                 ?>
                 ">
                     <?=
-                    $udk->udk_code;
+                    $grnti->grnti_code;
                     ?>
                 </a>
             </h3>
             <div>
                 <?=
-                $udk->udk_name;
+                $grnti->grnti_name;
                 ?>
             </div>
         </li>
