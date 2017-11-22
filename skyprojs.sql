@@ -11,9 +11,69 @@ Target Server Type    : PGSQL
 Target Server Version : 90503
 File Encoding         : 65001
 
-Date: 2017-04-05 23:33:34
+Date: 2017-11-23 01:43:48
 */
 
+
+-- ----------------------------
+-- Sequence structure for department_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."department_id_seq";
+CREATE SEQUENCE "public"."department_id_seq"
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 5
+ CACHE 1;
+SELECT setval('"public"."department_id_seq"', 5, true);
+
+-- ----------------------------
+-- Sequence structure for direction_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."direction_id_seq";
+CREATE SEQUENCE "public"."direction_id_seq"
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 3
+ CACHE 1;
+SELECT setval('"public"."direction_id_seq"', 3, true);
+
+-- ----------------------------
+-- Sequence structure for grnti_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."grnti_id_seq";
+CREATE SEQUENCE "public"."grnti_id_seq"
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 8
+ CACHE 1;
+SELECT setval('"public"."grnti_id_seq"', 8, true);
+
+-- ----------------------------
+-- Sequence structure for project_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."project_id_seq";
+CREATE SEQUENCE "public"."project_id_seq"
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 10
+ CACHE 1;
+SELECT setval('"public"."project_id_seq"', 10, true);
+
+-- ----------------------------
+-- Sequence structure for udk_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."udk_id_seq";
+CREATE SEQUENCE "public"."udk_id_seq"
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 14
+ CACHE 1;
+SELECT setval('"public"."udk_id_seq"', 14, true);
 
 -- ----------------------------
 -- Table structure for admin
@@ -49,6 +109,9 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of classificate_1
 -- ----------------------------
+INSERT INTO "public"."classificate_1" VALUES ('1', '6');
+INSERT INTO "public"."classificate_1" VALUES ('1', '7');
+INSERT INTO "public"."classificate_1" VALUES ('10', '6');
 
 -- ----------------------------
 -- Table structure for classificate_2
@@ -65,6 +128,8 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of classificate_2
 -- ----------------------------
+INSERT INTO "public"."classificate_2" VALUES ('1', '9');
+INSERT INTO "public"."classificate_2" VALUES ('10', '13');
 
 -- ----------------------------
 -- Table structure for classificate_3
@@ -81,6 +146,8 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of classificate_3
 -- ----------------------------
+INSERT INTO "public"."classificate_3" VALUES ('3', '1');
+INSERT INTO "public"."classificate_3" VALUES ('3', '10');
 
 -- ----------------------------
 -- Table structure for collaborator
@@ -103,7 +170,7 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."department";
 CREATE TABLE "public"."department" (
-"department_id" int4 NOT NULL,
+"department_id" int4 DEFAULT nextval('department_id_seq'::regclass) NOT NULL,
 "department_name" varchar(254) COLLATE "default" NOT NULL,
 "department_parent_id" int4
 )
@@ -114,14 +181,16 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of department
 -- ----------------------------
-INSERT INTO "public"."department" VALUES ('1', 'ФСУ', null);
+INSERT INTO "public"."department" VALUES ('3', 'ФСУ', null);
+INSERT INTO "public"."department" VALUES ('4', 'АОИ', '3');
+INSERT INTO "public"."department" VALUES ('5', 'АСУ', '3');
 
 -- ----------------------------
 -- Table structure for directions
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."directions";
 CREATE TABLE "public"."directions" (
-"direction_id" int4 NOT NULL,
+"direction_id" int4 DEFAULT nextval('direction_id_seq'::regclass) NOT NULL,
 "direction_name" varchar(254) COLLATE "default" NOT NULL
 )
 WITH (OIDS=FALSE)
@@ -131,13 +200,14 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of directions
 -- ----------------------------
+INSERT INTO "public"."directions" VALUES ('3', 'Информационные технологии');
 
 -- ----------------------------
 -- Table structure for grnti
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."grnti";
 CREATE TABLE "public"."grnti" (
-"grnti_id" int4 NOT NULL,
+"grnti_id" int4 DEFAULT nextval('grnti_id_seq'::regclass) NOT NULL,
 "grnti_code" varchar(254) COLLATE "default" NOT NULL,
 "grnti_name" text COLLATE "default" NOT NULL,
 "grnti_parent_id" int4
@@ -149,6 +219,9 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of grnti
 -- ----------------------------
+INSERT INTO "public"."grnti" VALUES ('6', '20.53.17', 'Тест', '8');
+INSERT INTO "public"."grnti" VALUES ('7', '20.53.18', 'asd', '8');
+INSERT INTO "public"."grnti" VALUES ('8', '20.53', 'аа', null);
 
 -- ----------------------------
 -- Table structure for member
@@ -173,14 +246,14 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."project";
 CREATE TABLE "public"."project" (
-"project_id" int4 NOT NULL,
+"project_id" int4 DEFAULT nextval('project_id_seq'::regclass) NOT NULL,
 "project_name" varchar(254) COLLATE "default" NOT NULL,
 "project_date" date NOT NULL,
-"project_area" varchar(254) COLLATE "default" NOT NULL,
-"project_advantages" varchar(254) COLLATE "default" NOT NULL,
-"project_specifications" varchar(254) COLLATE "default" NOT NULL,
-"project_consumers" varchar(254) COLLATE "default" NOT NULL,
-"project_protection" varchar(254) COLLATE "default" NOT NULL
+"project_area" varchar(510) COLLATE "default",
+"project_advantages" varchar(510) COLLATE "default",
+"project_specifications" varchar(510) COLLATE "default",
+"project_consumers" varchar(510) COLLATE "default",
+"project_protection" varchar(510) COLLATE "default"
 )
 WITH (OIDS=FALSE)
 
@@ -189,14 +262,15 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of project
 -- ----------------------------
-INSERT INTO "public"."project" VALUES ('1', 'ОПВРИВ', '2017-04-05', '1', '1', '1', '1', '1');
+INSERT INTO "public"."project" VALUES ('1', 'Облачная Платформа Ведения Реестра Информационных Проектов', '2017-05-24', '', '  ', 'Использование интернет-браузера.', '  ', '');
+INSERT INTO "public"."project" VALUES ('10', 'Второй', '2017-11-22', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for udk
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."udk";
 CREATE TABLE "public"."udk" (
-"udk_id" int4 NOT NULL,
+"udk_id" int4 DEFAULT nextval('udk_id_seq'::regclass) NOT NULL,
 "udk_code" varchar(254) COLLATE "default" NOT NULL,
 "udk_name" text COLLATE "default" NOT NULL,
 "udk_parent_id" int4
@@ -208,7 +282,10 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of udk
 -- ----------------------------
-INSERT INTO "public"."udk" VALUES ('1', '01.01', 'A', null);
+INSERT INTO "public"."udk" VALUES ('9', '004.413', 'Организация разработки программного обеспечения', '14');
+INSERT INTO "public"."udk" VALUES ('12', '004', 'Информационные технологии. Компьютерные технологии. Теория вычислительных машин и систем', null);
+INSERT INTO "public"."udk" VALUES ('13', '004.4', 'Программные средства', '12');
+INSERT INTO "public"."udk" VALUES ('14', '004.41', 'Программотехника. Разработка вычислительных систем', '12');
 
 -- ----------------------------
 -- Table structure for working
@@ -225,7 +302,8 @@ WITH (OIDS=FALSE)
 -- ----------------------------
 -- Records of working
 -- ----------------------------
-INSERT INTO "public"."working" VALUES ('1', '1');
+INSERT INTO "public"."working" VALUES ('4', '1');
+INSERT INTO "public"."working" VALUES ('5', '10');
 
 -- ----------------------------
 -- Alter Sequences Owned By 
@@ -388,5 +466,5 @@ ALTER TABLE "public"."collaborator" ADD FOREIGN KEY ("member_id") REFERENCES "pu
 -- ----------------------------
 -- Foreign Key structure for table "public"."working"
 -- ----------------------------
-ALTER TABLE "public"."working" ADD FOREIGN KEY ("project_id") REFERENCES "public"."project" ("project_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE "public"."working" ADD FOREIGN KEY ("department_id") REFERENCES "public"."department" ("department_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE "public"."working" ADD FOREIGN KEY ("project_id") REFERENCES "public"."project" ("project_id") ON DELETE RESTRICT ON UPDATE RESTRICT;

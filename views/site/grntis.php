@@ -25,7 +25,7 @@ $this->title = $title;
             <h3>
                 <a href="
                 <?=
-                Yii::$app->urlManager->createUrl(['site/grnti', 'grnti_code' => $grnti->grnti_id])
+                Yii::$app->urlManager->createUrl(['site/grntis', 'grnti_id' => $grnti->grnti_id])
                 ?>
                 ">
                     <?=
@@ -43,3 +43,6 @@ $this->title = $title;
     }
     ?>
 </ul>
+<?= LinkPager::widget([
+    'pagination' => $pages,
+]);

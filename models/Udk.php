@@ -64,7 +64,12 @@ class Udk extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUdk()
+    public function getProjects()
+    {
+        return $this->hasMany(Project::className(), ['project_id' => 'project_id'])->viaTable('classificate_2', ['udk_id' => 'udk_id']);
+    }
+
+    public function getUdk_parent()
     {
         return $this->hasOne(Udk::className(), ['udk_id' => 'udk_parent_id']);
     }

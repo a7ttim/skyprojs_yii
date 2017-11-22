@@ -25,7 +25,7 @@ $this->title = $title;
             <h3>
                 <a href="
                 <?=
-                Yii::$app->urlManager->createUrl(['site/project', 'name' => $project->project_name])
+                Yii::$app->urlManager->createUrl(['site/project', 'project_id' => $project->project_id])
                 ?>
                 ">
                     <?=
