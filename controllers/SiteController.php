@@ -96,39 +96,71 @@ class SiteController extends Controller
 
     public function actionUdks()
     {
-        $id = Yii::$app->request->get("udk_code");
-        $udks = Udk::find()->where(['udk_parent_id'=>$id]);
-        $countUdks = clone $udks;
-        $pages = new Pagination(['totalCount' => $countUdks->count(), 'pageSize' => 1]);
-        return $this->render(
-            'udks', [
-                'udks' => $udks->offset($pages->offset)
+        $id = Yii::$app->request->get("udk_id");
+        $udks = Udk::find()->where(['udk_parent_id' => $id]);
+        if(count($udks->all()) > 0){
+            $countUdks = clone $udks;
+            $pages = new Pagination(['totalCount' => $countUdks->count(), 'pageSize' => 15]);
+            return $this->render(
+                'udks', [
+                    'udks' => $udks->offset($pages->offset)
+                        ->limit($pages->limit)
+                        ->all(),
+                    'pages' => $pages
+                ]
+            );
+        }
+        else {
+            $udk = Udk::findOne(['udk_id' => $id]);
+            $projects = $udk->getProjects();
+            $countProjects = clone $projects;
+            $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 15]);
+            return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                     ->limit($pages->limit)
                     ->all(),
-                'pages' => $pages
-            ]
-        );
+                    'pages' => $pages
+                ]
+            );
+        }
     }
 
-    public function actionGrnti()
+    public function actionGrntis()
     {
-        $id = Yii::$app->request->get("id");
-        $grnti = Grnti::find()->where(['grnti_parent_id'=>$id])->all();
-        $grntis = Grnti::findOne($id);
-        $projects = $grntis->projects;
-
-        return $this->render(
-            'grntis', ['grntis' => $grnti, 'projects' => $projects]
-        );
+        $id = Yii::$app->request->get("grnti_id");
+        $grntis = Grnti::find()->where(['grnti_parent_id' => $id]);
+        if(count($grntis->all()) > 0){
+            $countGrntis = clone $grntis;
+            $pages = new Pagination(['totalCount' => $countGrntis->count(), 'pageSize' => 15]);
+            return $this->render(
+                'grntis', [
+                    'grntis' => $grntis->offset($pages->offset)
+                        ->limit($pages->limit)
+                        ->all(),
+                    'pages' => $pages
+                ]
+            );
+        }
+        else {
+            $grnti = Grnti::findOne(['grnti_id' => $id]);
+            $projects = $grnti->getProjects();
+            $countProjects = clone $projects;
+            $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 15]);
+            return $this->render('projects', ['projects' => $projects->offset($pages->offset)
+                    ->limit($pages->limit)
+                    ->all(),
+                    'pages' => $pages
+                ]
+            );
+        }
     }
 
     public function actionDirections()
     {
         $id = Yii::$app->request->get("direction_id");
-        $projects = Project::find()->where(['directions.direction_id' => $id]);
+        $dir = Directions::findOne(['direction_id' => $id]);
+        $projects = $dir->getProjects();
         $countProjects = clone $projects;
-        $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 1]);
-
+        $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 15]);
         return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all(),
@@ -137,12 +169,8 @@ class SiteController extends Controller
         );
     }
 
-    public function actionProjects()
+    public function actionProjects($projects, $pages)
     {
-        $projects = Project::find();
-        $countProjects = clone $projects;
-        $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 1]);
-
         return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all(),
@@ -153,8 +181,8 @@ class SiteController extends Controller
 
     public function actionProject()
     {
-        $id = Yii::$app->request->get("id");
-        $project = Project::findOne($id);
+        $id = Yii::$app->request->get("project_id");
+        $project = Project::findOne(['project_id' => $id]);
         $members = $project->members;
 
         return $this->render('project', ['project' => $project, 'members' => $members]
@@ -167,28 +195,51 @@ class SiteController extends Controller
         $search = Yii::$app->request->get("search");
         switch ($radio){
             case 'udk':
-                $udks = Udk::find()->orWhere(['LIKE', 'udk_code', $search])->orWhere(['LIKE', 'udk_name', $search])->all();
-
+                $udks = Udk::find()->orWhere(['LIKE', 'udk_code', $search])->orWhere(['LIKE', 'udk_name', $search]);
+                $countUdks = clone $udks;
+                $pages = new Pagination(['totalCount' => $countUdks->count(), 'pageSize' => 15]);
                 return $this->render(
-                    'udks', ['udks' => $udks]
+                    'udks', [
+                        'udks' => $udks->offset($pages->offset)
+                            ->limit($pages->limit)
+                            ->all(),
+                        'pages' => $pages
+                    ]
                 );
             case 'grnti':
-                $grntis = Grnti::find()->orWhere(['LIKE', 'grnti_code', $search])->orWhere(['LIKE', 'grnti_name', $search])->all();
+                $grntis = Grnti::find()->orWhere(['LIKE', 'grnti_code', $search])->orWhere(['LIKE', 'grnti_name', $search]);
 
+                $countGrntis = clone $grntis;
+                $pages = new Pagination(['totalCount' => $countGrntis->count(), 'pageSize' => 15]);
                 return $this->render(
-                    'grntis', ['grntis' => $grntis]
+                    'grntis', [
+                        'grntis' => $grntis->offset($pages->offset)
+                            ->limit($pages->limit)
+                            ->all(),
+                        'pages' => $pages
+                    ]
                 );
             case 'department':
-                $departments = Department::find()->where(['LIKE', 'department_name', $search])->with('projects')->all();
+                $departments = Department::find()->where(['LIKE', 'department_name', $search])->with('projects');
 
-                return $this->render(
-                    'departments', ['departments' => $departments]
+                $countDepartments = clone $departments;
+                $pages = new Pagination(['totalCount' => $countDepartments->count(), 'pageSize' => 15]);
+                return $this->render('departments', ['departments' => $departments->offset($pages->offset)
+                        ->limit($pages->limit)
+                        ->all(),
+                        'pages' => $pages
+                    ]
                 );
             default:
-                $projects = Project::find()->where(['LIKE', 'project_name', $search])->all();
+                $projects = Project::find()->where(['LIKE', 'project_name', $search]);
 
-                return $this->render(
-                    'projects', ['projects' => $projects]
+                $countProjects = clone $projects;
+                $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 15]);
+                return $this->render('projects', ['projects' => $projects->offset($pages->offset)
+                        ->limit($pages->limit)
+                        ->all(),
+                        'pages' => $pages
+                    ]
                 );
         }
     }

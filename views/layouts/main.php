@@ -138,8 +138,8 @@ $action = Yii::$app->controller->action->id;
                     'options' => ['class' =>'nav-tabs'], // set this to nav-tab to get tab-styled navigation
                     'items' => [
                         ['label' => 'Главная', 'url' => ['site/index']],
-                        ['label' => 'УДК', 'url' => ['site/udk']],
-                        ['label' => 'ГРНТИ', 'url' => ['site/grnti']],
+                        ['label' => 'УДК', 'url' => ['site/udks']],
+                        ['label' => 'ГРНТИ', 'url' => ['site/grntis']],
                         ['label' => 'Подразделения', 'url' => ['site/departments']],
                     ],
                 ]);

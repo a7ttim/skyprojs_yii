@@ -52,16 +52,16 @@ class Classificate1 extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGrnti()
+    public function getProject()
     {
-        return $this->hasOne(Grnti::className(), ['grnti_id' => 'grnti_id']);
+        return $this->hasOne(Project::className(), ['project_id' => 'project_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProject()
+    public function getGrnti()
     {
-        return $this->hasOne(Project::className(), ['project_id' => 'project_id']);
+        return $this->hasOne(Grnti::className(), ['grnti_id' => 'grnti_id']);
     }
 }

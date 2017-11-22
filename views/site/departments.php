@@ -36,7 +36,7 @@ else
                     $grntis = Classificate1::find()->where(['project_id'=>$project->project_id])->all();
                     ?>
 
-                    <a href="<?=Yii::$app->urlManager->createUrl(['site/project', 'id' => $project->project_id])?>">
+                    <a href="<?=Yii::$app->urlManager->createUrl(['site/project', 'project_id' => $project->project_id])?>">
                         <?=$project->project_name?>
                     </a>
                 </div>
