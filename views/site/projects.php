@@ -45,7 +45,7 @@ foreach ($projects as $project){
                 foreach ($codes as $code)
                 {
                     ?>
-                    <a href="<?=Yii::$app->urlManager->createUrl(['site/udk', 'id' => $item->udk_id])?>"><span class = 'code'><?=$code->udk_code?></span></a>
+                    <a href="<?=Yii::$app->urlManager->createUrl(['site/udks', 'udk_id' => $item->udk_id])?>"><span class = 'code'><?=$code->udk_code?></span></a>
                     <?php
                 }
             }?>
@@ -59,7 +59,7 @@ foreach ($projects as $project){
                 foreach ($codes as $code)
                 {
                     ?>
-                    <a href="<?=Yii::$app->urlManager->createUrl(['site/grnti', 'id' => $item->grnti_id])?>"><span class = 'code'><?=$code->grnti_code?></span></a>
+                    <a href="<?=Yii::$app->urlManager->createUrl(['site/grntis', 'grnti_id' => $item->grnti_id])?>"><span class = 'code'><?=$code->grnti_code?></span></a>
                     <?php
                 }
             }

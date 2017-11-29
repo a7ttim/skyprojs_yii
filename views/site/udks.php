@@ -17,32 +17,30 @@ $this->title = $title;
         $name
         ?>
     </h1>
-    <ul>
-        <?
-        foreach ($udks as $udk){
-            ?>
-            <li>
-                <h3>
-                    <a href="
+<?
+foreach ($udks as $udk){
+    ?>
+    <li class="list-group-item">
+        <h4>
+            <a href="
                 <?=
-                    Yii::$app->urlManager->createUrl(['site/udks', 'udk_id' => $udk->udk_id])
-                    ?>
+            Yii::$app->urlManager->createUrl(['site/udks', 'udk_id' => $udk->udk_id])
+            ?>
                 ">
-                        <?=
-                        $udk->udk_code;
-                        ?>
-                    </a>
-                </h3>
-                <div>
-                    <?=
-                    $udk->udk_name;
-                    ?>
-                </div>
-            </li>
-            <?
-        }
-        ?>
-    </ul>
+                <?=
+                $udk->udk_code;
+                ?>
+            </a>
+        </h4>
+        <div>
+            <?=
+            $udk->udk_name;
+            ?>
+        </div>
+    </li>
+    <?
+}
+?>
 <?= LinkPager::widget([
     'pagination' => $pages,
 ]);

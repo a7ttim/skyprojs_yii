@@ -14,25 +14,23 @@ $this->title = $title;
 <h1>
     Направления
 </h1>
-<ul>
-    <?
-    foreach ($directions as $direction){
-        ?>
-        <li>
-            <h3>
-                <a href="
-                <?=
-                Yii::$app->urlManager->createUrl(['site/directions', 'direction_id' => $direction->direction_id])
-                ?>
-                ">
-                    <?=
-                    $direction->direction_name;
-                    ?>
-                </a>
-            </h3>
-        </li>
-        <?
-    }
+<?
+foreach ($directions as $direction){
     ?>
-</ul>
+    <li class="list-group-item">
+        <h3>
+            <a href="
+                <?=
+            Yii::$app->urlManager->createUrl(['site/directions', 'direction_id' => $direction->direction_id])
+            ?>
+                ">
+                <?=
+                $direction->direction_name;
+                ?>
+            </a>
+        </h3>
+    </li>
+    <?
+}
+?>
 

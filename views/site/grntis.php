@@ -17,32 +17,30 @@ $this->title = $title;
         $name
         ?>
     </h1>
-    <ul>
-        <?
-        foreach ($grntis as $grnti){
-            ?>
-            <li>
-                <h3>
-                    <a href="
+<?
+foreach ($grntis as $grnti){
+    ?>
+    <li class="list-group-item">
+        <h4>
+            <a href="
                 <?=
-                    Yii::$app->urlManager->createUrl(['site/grntis', 'grnti_id' => $grnti->grnti_id])
-                    ?>
+            Yii::$app->urlManager->createUrl(['site/grntis', 'grnti_id' => $grnti->grnti_id])
+            ?>
                 ">
-                        <?=
-                        $grnti->grnti_code;
-                        ?>
-                    </a>
-                </h3>
-                <div>
+                <?=
+                $grnti->grnti_code;
+                ?>
+            </a>
+        </h4>
+        <span>
                     <?=
                     $grnti->grnti_name;
                     ?>
-                </div>
-            </li>
-            <?
-        }
-        ?>
-    </ul>
+                </span>
+    </li>
+    <?
+}
+?>
 <?= LinkPager::widget([
     'pagination' => $pages,
 ]);

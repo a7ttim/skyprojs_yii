@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'udk_parent_id',
             [
                 'attribute' => 'udk_parent_id',
-                'value' => 'udk.udk_code',
+                'value' => 'udk_parent.udk_code',
             ],
 
             //['class' => 'yii\grid\ActionColumn'],

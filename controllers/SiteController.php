@@ -80,12 +80,32 @@ class SiteController extends Controller
     public function actionDepartments()
     {
         $id = Yii::$app->request->get("id");
-        $departments = Department::find()->where(['department_parent_id'=>$id])->all();
-        $projects = Department::findOne($id)->projects;
+        $departments = Department::find()->where(['department_parent_id'=>$id]);
+        if(count($departments->all()) > 0) {
 
-        return $this->render(
-            'departments', ['departments' => $departments, 'projects' => $projects]
-        );
+            $countDepartments = clone $departments;
+            $pages = new Pagination(['totalCount' => $countDepartments->count(), 'pageSize' => 15]);
+            return $this->render(
+                'departments', [
+                    'departments' => $departments->offset($pages->offset)
+                        ->limit($pages->limit)
+                        ->all(),
+                    'pages' => $pages
+                ]
+            );
+        }
+        else {
+            $udk = Department::findOne(['department_id' => $id]);
+            $projects = $udk->getProjects();
+            $countProjects = clone $projects;
+            $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 15]);
+            return $this->render('projects', ['projects' => $projects->offset($pages->offset)
+                    ->limit($pages->limit)
+                    ->all(),
+                    'pages' => $pages
+                ]
+            );
+        }
     }
 
     public function actionStatistic()
