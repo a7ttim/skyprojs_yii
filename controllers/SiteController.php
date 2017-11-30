@@ -73,7 +73,7 @@ class SiteController extends Controller
         $directions = Directions::find()->with('projects')->all();
 
         return $this->render(
-            'directions', ['directions' => $directions]
+            'directions', ['directions' => $directions, 'title' => 'Направления']
         );
     }
 
@@ -90,19 +90,21 @@ class SiteController extends Controller
                     'departments' => $departments->offset($pages->offset)
                         ->limit($pages->limit)
                         ->all(),
-                    'pages' => $pages
+                    'pages' => $pages,
+                    'title' => 'Подразделения'
                 ]
             );
         }
         else {
-            $udk = Department::findOne(['department_id' => $id]);
-            $projects = $udk->getProjects();
+            $department = Department::findOne(['department_id' => $id]);
+            $projects = $department->getProjects();
             $countProjects = clone $projects;
             $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 15]);
             return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                     ->limit($pages->limit)
                     ->all(),
-                    'pages' => $pages
+                    'pages' => $pages,
+                    'title' => $department->department_name.': проекты'
                 ]
             );
         }
@@ -126,7 +128,8 @@ class SiteController extends Controller
                     'udks' => $udks->offset($pages->offset)
                         ->limit($pages->limit)
                         ->all(),
-                    'pages' => $pages
+                    'pages' => $pages,
+                    'title' => 'УДК'
                 ]
             );
         }
@@ -138,7 +141,8 @@ class SiteController extends Controller
             return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                     ->limit($pages->limit)
                     ->all(),
-                    'pages' => $pages
+                    'pages' => $pages,
+                    'title' => $udk->udk_name.': проекты'
                 ]
             );
         }
@@ -156,7 +160,8 @@ class SiteController extends Controller
                     'grntis' => $grntis->offset($pages->offset)
                         ->limit($pages->limit)
                         ->all(),
-                    'pages' => $pages
+                    'pages' => $pages,
+                    'title' => 'ГРНТИ'
                 ]
             );
         }
@@ -168,7 +173,8 @@ class SiteController extends Controller
             return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                     ->limit($pages->limit)
                     ->all(),
-                    'pages' => $pages
+                    'pages' => $pages,
+                    'title' => $grnti->grnti_name.': проекты'
                 ]
             );
         }
@@ -184,7 +190,8 @@ class SiteController extends Controller
         return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all(),
-                'pages' => $pages
+                'pages' => $pages,
+                'title' => $dir->direction_name.': проекты'
             ]
         );
     }
@@ -194,7 +201,8 @@ class SiteController extends Controller
         return $this->render('projects', ['projects' => $projects->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all(),
-                'pages' => $pages
+                'pages' => $pages,
+                'title' => 'Проекты'
             ]
         );
     }
@@ -215,7 +223,7 @@ class SiteController extends Controller
         $search = Yii::$app->request->get("search");
         switch ($radio){
             case 'udk':
-                $udks = Udk::find()->orWhere(['LIKE', 'udk_code', $search])->orWhere(['LIKE', 'udk_name', $search]);
+                $udks = Udk::find()->orWhere(['ILIKE', 'udk_code', $search])->orWhere(['ILIKE', 'udk_name', $search]);
                 $countUdks = clone $udks;
                 $pages = new Pagination(['totalCount' => $countUdks->count(), 'pageSize' => 15]);
                 return $this->render(
@@ -227,7 +235,7 @@ class SiteController extends Controller
                     ]
                 );
             case 'grnti':
-                $grntis = Grnti::find()->orWhere(['LIKE', 'grnti_code', $search])->orWhere(['LIKE', 'grnti_name', $search]);
+                $grntis = Grnti::find()->orWhere(['ILIKE', 'grnti_code', $search])->orWhere(['ILIKE', 'grnti_name', $search]);
 
                 $countGrntis = clone $grntis;
                 $pages = new Pagination(['totalCount' => $countGrntis->count(), 'pageSize' => 15]);
@@ -240,7 +248,7 @@ class SiteController extends Controller
                     ]
                 );
             case 'department':
-                $departments = Department::find()->where(['LIKE', 'department_name', $search])->with('projects');
+                $departments = Department::find()->where(['ILIKE', 'department_name', $search])->with('projects');
 
                 $countDepartments = clone $departments;
                 $pages = new Pagination(['totalCount' => $countDepartments->count(), 'pageSize' => 15]);
@@ -251,7 +259,7 @@ class SiteController extends Controller
                     ]
                 );
             default:
-                $projects = Project::find()->where(['LIKE', 'project_name', $search]);
+                $projects = Project::find()->where(['ILIKE', 'project_name', $search]);
 
                 $countProjects = clone $projects;
                 $pages = new Pagination(['totalCount' => $countProjects->count(), 'pageSize' => 15]);
