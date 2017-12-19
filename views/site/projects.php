@@ -17,9 +17,6 @@ $this->title = $title;
 ?>
 <h1>
     Проекты
-    <?=
-    $name
-    ?>
 </h1>
 <?
 foreach ($projects as $project){

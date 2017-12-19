@@ -113,7 +113,7 @@ $action = Yii::$app->controller->action->id;
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <form role="search" method ="get" action="<?= Yii::$app->request->getBaseUrl() ?>search">
+                <form role="search" method ="get" action="<?= Yii::$app->request->getBaseUrl() ?>/site/search">
                     <div class="input-group">
                         <input class="form-control" id="search" type="text" placeholder="Поиск" name="search" required>
                         <div class="input-group-btn">
