@@ -1,17 +1,17 @@
 /*
 Navicat PGSQL Data Transfer
 
-Source Server         : postgreSQL
-Source Server Version : 90603
+Source Server         : localhost_5432
+Source Server Version : 90503
 Source Host           : localhost:5432
 Source Database       : skyprojs
 Source Schema         : public
 
 Target Server Type    : PGSQL
-Target Server Version : 90603
+Target Server Version : 90503
 File Encoding         : 65001
 
-Date: 2017-12-20 22:12:21
+Date: 2017-12-21 01:53:31
 */
 
 
@@ -473,20 +473,20 @@ ALTER TABLE "public"."classificate_1" ADD FOREIGN KEY ("project_id") REFERENCES 
 -- ----------------------------
 -- Foreign Key structure for table "public"."classificate_2"
 -- ----------------------------
-ALTER TABLE "public"."classificate_2" ADD FOREIGN KEY ("udk_id") REFERENCES "public"."udk" ("udk_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE "public"."classificate_2" ADD FOREIGN KEY ("project_id") REFERENCES "public"."project" ("project_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE "public"."classificate_2" ADD FOREIGN KEY ("udk_id") REFERENCES "public"."udk" ("udk_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- ----------------------------
 -- Foreign Key structure for table "public"."classificate_3"
 -- ----------------------------
-ALTER TABLE "public"."classificate_3" ADD FOREIGN KEY ("direction_id") REFERENCES "public"."directions" ("direction_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE "public"."classificate_3" ADD FOREIGN KEY ("project_id") REFERENCES "public"."project" ("project_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE "public"."classificate_3" ADD FOREIGN KEY ("direction_id") REFERENCES "public"."directions" ("direction_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- ----------------------------
 -- Foreign Key structure for table "public"."collaborator"
 -- ----------------------------
-ALTER TABLE "public"."collaborator" ADD FOREIGN KEY ("member_id") REFERENCES "public"."member" ("member_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE "public"."collaborator" ADD FOREIGN KEY ("project_id") REFERENCES "public"."project" ("project_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE "public"."collaborator" ADD FOREIGN KEY ("member_id") REFERENCES "public"."member" ("member_id") ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- ----------------------------
 -- Foreign Key structure for table "public"."working"

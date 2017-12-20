@@ -12,9 +12,7 @@ use app\assets\AppAsset;
 use yii\widgets\Menu;
 
 AppAsset::register($this);
-$title_name = 'ОПВРИП | Проекты';
-$action = Yii::$app->controller->action->id;
-
+$title_name = 'ОПВРИП | Проекты';$action = Yii::$app->controller->action->id;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,87 +24,6 @@ $action = Yii::$app->controller->action->id;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<!--<div class="navig">-->
-<!--    --><?php
-//    echo Nav::widget([
-//        'items' => [
-//            [
-//                'label' => 'О ТУСУРе',
-//                'items' => [
-//                    ['label' => 'Структура и органы управления', 'url' => 'https://tusur.ru/ru/o-tusure/struktura-i-organy-upravleniya'],
-//                    ['label' => 'Образование', 'url' => 'https://tusur.ru/ru/obrazovanie'],
-//                    ['label' => 'Наука и инновации', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii'],
-//                    ['label' => 'Сотрудничество', 'url' => 'https://tusur.ru/ru/sotrudnichestvo'],
-//                    ['label' => 'Новости и мероприятия', 'url' => 'https://tusur.ru/ru/novosti-i-meropriyatiya'],
-//                    ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
-//                    ['label' => 'Сведения об образовательной организации', 'url' => 'https://tusur.ru/sveden'],
-//                    ['label' => 'База нормативных документов', 'url' => 'https://regulations.tusur.ru/'],
-//                ],
-//            ],
-//            [
-//                'label' => 'Абитуриентам',
-//                'items' => [
-//                    ['label' => 'Кабинет абитуриента', 'url' => 'https://priem.tusur.ru/'],
-//                    ['label' => 'Направления подготовки бакалавров и специалистов', 'url' => 'https://abiturient.tusur.ru/ru/napravleniya-podgotovki/ochnaya-forma-obucheniya'],
-//                    ['label' => 'Магистерские программы', 'url' => 'https://magistrant.tusur.ru/ru/magisterskie-programmy/ochnaya-forma-obucheniya'],
-//                    ['label' => 'Календарь абитуриента', 'url' => 'https://abiturient.tusur.ru/ru/kak-postupit/ochnaya-forma-obucheniya?type=vst_ege,doc_budget,zach_budget,info'],
-//                    ['label' => 'Пункты выезда приёмных комиссий', 'url' => 'https://abiturient.tusur.ru/ru/kontakty#comissions'],
-//                ],
-//            ],
-//            [
-//                'label' => 'Студентам',
-//                'items' => [
-//                    ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
-//                    ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
-//                    ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
-//                    ['label' => 'Групповое проектное обучение', 'url' => 'https://gpo.tusur.ru/'],
-//                    ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
-//                    ['label' => 'Журнал успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
-//                    ['label' => 'Профком студентов', 'url' => 'http://studprof.tusur.ru/'],
-//                    ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
-//                ],
-//            ],
-//            [
-//                'label' => 'Аспирантам',
-//                'items' => [
-//                    ['label' => 'Поступление в аспирантуру', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/postuplenie-v-aspiranturu'],
-//                    ['label' => 'Направления подготовки', 'url' => 'https://tusur.ru/ru/obrazovanie/aspirantura/napravleniya-podgotovki'],
-//                    ['label' => 'Диссертационные советы', 'url' => 'https://tusur.ru/ru/nauka-i-innovatsii/podgotovka-kadrov-vysshey-nauchnoy-kvalifikatsii/dissertatsionnye-sovety'],
-//                    ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
-//                    ['label' => 'Библиотека', 'url' => 'http://lib.tusur.ru/'],
-//                    ['label' => 'Журнал "Доклады ТУСУР"', 'url' => 'https://journal.tusur.ru/'],
-//                ],
-//            ],
-//            [
-//                'label' => 'Сотрудникам',
-//                'items' => [
-//                    ['label' => 'Телефонный справочник', 'url' => 'https://directory.tusur.ru/'],
-//                    ['label' => 'Расписание занятий', 'url' => 'https://timetable.tusur.ru/'],
-//                    ['label' => 'Научно-образовательный портал', 'url' => 'https://edu.tusur.ru/'],
-//                    ['label' => 'Журнал посещаемости', 'url' => 'https://attendance.tusur.ru/'],
-//                    ['label' => 'Генератор рабочих программ', 'url' => 'https://workprogram.tusur.ru/'],
-//                    ['label' => 'Ввод успеваемости', 'url' => 'https://ocenka.tusur.ru/'],
-//                    ['label' => 'Показатели эффективности труда ППС', 'url' => 'https://effective-contracts.tusur.ru/docs'],
-//                    ['label' => 'Профком сотрудников', 'url' => 'http://profkom.tusur.ru/'],
-//                ],
-//            ],
-//            [
-//                'label' => 'Выпускникам',
-//                'items' => [
-//                    ['label' => 'Ассоциация выпускников ТУСУР', 'url' => 'http://avt.tusur.ru/'],
-//                    ['label' => 'Содействие трудоустройству', 'url' => 'http://aist.tusur.ru/'],
-//                ],
-//            ],
-//            [
-//                'label' => 'Войти',
-//                'url' => ['auth/login'],
-//                'options' => ['class' => 'login'],
-//            ],
-//        ],
-//        'options' => ['class' =>'nav-pills'], // set this to nav-tab to get tab-styled navigation
-//    ]);
-//    ?>
-<!--</div>-->
 <body>
 <?php $this->beginBody() ?>
 <div class="wrap bg-dark">
@@ -116,8 +33,8 @@ $action = Yii::$app->controller->action->id;
                 <form role="search" method ="get" action="<?= Yii::$app->request->getBaseUrl() ?>/site/search">
                     <div class="input-group">
                         <input class="form-control" id="search" type="text" placeholder="Поиск" name="search" required>
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-primary dropdown-toggle" value="" data-toggle="dropdown" tabindex="-1">
+                        <div class="input-group-btn" id="searchdropmenu">
+                            <button type="button" class="btn btn-primary dropdown-toggle" value="" data-toggle="dropdown" tabindex="-1" onclick="document.getElementById('searchdropmenu').classList.toggle('open')">
                                 <span class="caret"></span>
                                 <span id="catName" class="">Проекты</span>
                             </button>

@@ -35,6 +35,21 @@ $title_name = 'ОПВРИП | Панель управления';
         ],
     ]);
     echo Nav::widget([
+        'options' => ['class' =>'navbar-nav'],
+        'items' => [
+            [
+                'label' => 'Действия',
+                'items' => [
+                    ['label' => 'Проекты', 'url' => ['/admin/project']],
+                    ['label' => 'УДК', 'url' => ['/admin/udk']],
+                    ['label' => 'ГРНТИ', 'url' => ['/admin/grnti']],
+                    ['label' => 'Подразделения', 'url' => ['/admin/department']],
+                    ['label' => 'Направления', 'url' => ['/admin/direction']],
+                ],
+            ],
+        ],
+    ]);
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             //['label' => 'Проекты', 'url' => ['/admin/project']],
@@ -42,31 +57,17 @@ $title_name = 'ОПВРИП | Панель управления';
             //['label' => 'ГРНТИ', 'url' => ['/admin/grnti']],
             //['label' => 'Подразделения', 'url' => ['/admin/department']],
             //['label' => 'Направления', 'url' => ['/admin/direction']],
-            Yii::$app->user->isGuest ? (
-            ['label' => 'Вход', 'url' => ['/auth/login']]
-            ) : (
-            ['label' => 'Выход ('.Yii::$app->user->identity->admin_login.')', 'url' => ['/auth/logout']]
-            )
+            [
+                'label' => 'Вход',
+                'url' => ['/auth/login'],
+                'visible' => Yii::$app->user->isGuest
+            ],
+            [
+                'label' => 'Выход ('.Yii::$app->user->identity->admin_login.')',
+                'url' => ['/auth/logout'],
+                'visible' => !Yii::$app->user->isGuest]
         ],
     ]);
-
-    echo !Yii::$app->user->isGuest ? Nav::widget([
-        'items' => [
-            [
-                'label' => 'Действия',
-                'items' => [
-                    //'<li class="dropdown-header">Dropdown Header</li>',
-                    ['label' => 'Проекты', 'url' => ['/admin/project']],
-                    ['label' => 'УДК', 'url' => ['/admin/udk']],
-                    ['label' => 'ГРНТИ', 'url' => ['/admin/grnti']],
-                    ['label' => 'Подразделения', 'url' => ['/admin/department']],
-                    ['label' => 'Направления', 'url' => ['/admin/direction']],
-                    //'<li class="divider"></li>',
-                ],
-            ],
-        ],
-        'options' => ['class' =>'navbar-nav'],
-    ]): '';
     NavBar::end();
     ?>
         <?= Breadcrumbs::widget([

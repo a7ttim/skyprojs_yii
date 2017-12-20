@@ -46,17 +46,6 @@ $config = [
             'rules' => [
             ],
         ],
-        'assetManager' => [
-            'bundles' => [
-                'yii\bootstrap\BootstrapAsset' => [
-                    'sourcePath' => null,
-                    'basePath' => '@webroot',
-                    'baseUrl' => '@web',
-                    'css' => ['css/bootstrap.css'],
-                    'js' => ['js/bootstrap.js'],
-                ],
-            ],
-        ],
     ],
     'modules' => [
         'admin' => [

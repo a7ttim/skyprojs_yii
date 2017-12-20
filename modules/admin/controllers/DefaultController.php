@@ -25,7 +25,7 @@ class DefaultController extends Controller
                 'class' =>  AccessControl::className(),
                 'denyCallback'  =>  function($rule, $action)
                 {
-                    throw new \yii\web\NotFoundHttpException('Page not found.');
+                    throw new \yii\web\NotFoundHttpException('Страница не найдена.');
                 },
                 'rules' =>  [
                     [
